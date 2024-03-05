@@ -19,7 +19,7 @@
         "pid": "P003",
         "name": "Stoter-Farm-Adult-Rabbit-Food11",
         "rating": 4,
-        "category":"RabbitFood",
+        "category":"rabbitFood",
         "price": 19,
         "imagePath": "./product_gallery/Stoter-Farm-Adult-Rabbit-Food11-.png"
       },

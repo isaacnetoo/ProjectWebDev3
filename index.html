@@ -10,6 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="./css/body.css">
     <link rel="stylesheet" href="./css/header.css">
+    <link rel="stylesheet" href="./css/filter.css">
     <link rel="stylesheet" href="./css/productDisplay.css">
     <link rel="stylesheet" href="./css/footer.css">
 </head>
@@ -101,6 +102,22 @@
         </div>
     </header>
 
+
+    <section class="customize-filter">
+        <div class="filter-container">
+            <div class="select-container">
+                <select id="categoryFilter">
+                    <option value="all">All&nbsp Products</option>
+                    <option value="dogFood">Dog&nbsp Products</option>
+                    <option value="catFood">Cat&nbsp Products</option>
+                    <option value="rabbitFood">Rabbit&nbsp Products</option>
+                    <option value="price">Sorted by Price </option>
+                    <option value="rate">Sorted by Rate&nbsp </option>
+                </select>
+            <div/>
+        </div>
+    </section>
+
     
 
 
@@ -181,26 +198,66 @@
     }
     load();
 
-    const displayProduct=()=>{
+    // filter and product display based on user option 
+    
+    const categoryFilter = document.getElementById('categoryFilter');
+    categoryFilter.addEventListener('change', (event) => {
+        const selectedCategory = event.target.value; // Correctly get the selected option
+        // console.log(selectedCategory); 
+        displayProduct(selectedCategory); // Filter and display products
+    });
+
+
+    // default parameter is all 
+    const displayProduct=(category='all')=>{
+
         const productDisplayContainer = document.querySelector(".product-display-container");
         productDisplayContainer.innerHTML='';
 
-        for (let product of productList.values()){
-            const productElement = document.createElement("div");
-            productElement.classList.add("product"); // add class name product
-            productElement.id= product.pid; //set up id =pid 
 
-            productElement.innerHTML= 
-            `<img src="${product.imagePath}" alt="${product.category}">
-            <h4>${product.name}</h4>
-            <h3>Price :&nbsp<span>${product.price}</span></h3>
-            <h3>Rating: <span>${product.rating}</span></h3>
-            <div class ="CartButton-button-container">
-                <button class="CartButton">Add to Cart</button>
-            </div>`;
+        //initially convert productList map to an array for sorting and filtering
+        let productsArray = Array.from(productList.values());
 
-            productDisplayContainer.append(productElement);
+        //so now in this array, there are several product object, product.name = product name 
+        // the way to iterate the products array 
+        // for (let i = 0; i < productsArray.length; i++) {
+        //     const product = productsArray[i];
+        // }
 
+        //logic sort by price from low to high
+        if (category ==='price'){
+            productsArray.sort((a,b) => a.price-b.price);
+     
+        }
+        
+        // logic sort by rating form high to low 
+        else if(category==='rate'){
+            productsArray.sort((a,b) => b.rating-a.rating);
+        }
+
+
+
+
+        for (let product of productsArray){
+           
+            //categroy =  dogFood or catFood or rabbitFood or price or rate / all = display all product
+            if (category==='all'|| product.category === category ||category==='price' || category==='rate'){
+             
+                const productElement = document.createElement("div");
+                productElement.classList.add("product"); // add class name product
+                productElement.id= product.pid; //set up id =pid 
+
+                productElement.innerHTML= 
+                `<img src="${product.imagePath}" alt="${product.category}">
+                <h4>${product.name}</h4>
+                <h3>Price :&nbsp<span>${product.price}</span></h3>
+                <h3>Rating: <span>${product.rating}</span></h3>
+                <div class ="CartButton-button-container">
+                    <button class="CartButton">Add to Cart</button>
+                </div>`;
+
+                productDisplayContainer.append(productElement);
+            }
         }
     }
 
