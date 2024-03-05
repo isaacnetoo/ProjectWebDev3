@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Find & buy the best bet products in Canada online</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./css/body.css">
+    <link rel="stylesheet" href="./css/header.css">
+    <link rel="stylesheet" href="./css/productDisplay.css">
+    <link rel="stylesheet" href="./css/footer.css">
+</head>
+
+<body>
+    <header>
+        <div class="header-container">
+            <div class="first-column">
+                <div class="first-column-first-row">
+                    <p>1-844-799-7387</p>
+
+                    <a href="https://www.facebook.com/canadianpetconnection">
+                        <img src="./img/facebook.png" alt="Facebook">
+                    </a>
+
+                    <a href="https://twitter.com/i/flow/login?redirect_after_login=%2FCanPetConn">
+                        <img src="./img/twitter.png" alt="twitter">
+                    </a>
+                    <a href="https://www.instagram.com/canadianpetconnection/">
+                        <img src="./img/instagram.png" alt="ins">
+                    </a>
+                    <a href="https://www.youtube.com/channel/UC0ugFWgeUh3LDZyCzwd5dAQ">
+                        <img src="./img/youtube.png" alt="youtube">
+                    </a>
+                </div>
+
+                <div class="first-column-second-row">
+                    <h2><a href="./index.html">PawPalsMarket Connection </a></h2>
+                </div>
+
+                <div class="first-column-third-row">
+
+                    <a href="https://www.canadianpetconnection.ca/shop-all-brands/">Shop by Brand</a>
+
+                    <a href="https://www.canadianpetconnection.ca/book-the-pet-expert/">Book a Consultation</a>
+
+                </div>
+            </div>
+
+            <div class="second-column">
+                <img src="./img/PawPalSmarket-logo.png" alt="website-logo" class="website-logo">
+
+            </div>
+
+            <div class="third-column">
+                <div class="third-column-first-row">
+                    <a href="./index.html">Home</a>
+                    <a href="https://www.canadianpetconnection.ca/get-to-know-us/">About Us</a>
+                    <a href="https://www.canadianpetconnection.ca/my-account/">Login</a>
+                    <a href="https://www.canadianpetconnection.ca/my-cart/">MyPetCart</a>
+                    <div class="cart-widget">
+                        <img src="./img/icons8-add-shopping-cart-50.png" alt="Cart Icon">
+                        <span class="cart-count">3</span> <!-- Assuming there are 3 items in the cart -->
+                    </div>
+                    
+                  
+                </div>
+
+                <div class="search-container">
+                    <input type="text" placeholder="What are you looking for today?" id="search-bar">
+                </div>
+
+                <div class="third-column-third-row">
+
+                    <a href="https://www.canadianpetconnection.ca/pet-news/">New & Resources</a>
+
+                    <a href="https://www.canadianpetconnection.ca/sale/">Sales</a>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="header-catergory-container">
+            <div class="text-container">
+                <a href="">Dog</a>
+                <a href="">Cat</a>
+                <a href="">Ferret</a>
+                <a href="">Small Animal</a>
+                <a href="">Reptile</a>
+                <a href="">Bird</a>
+                <a href="">Fish</a>
+                <a href="">Farm</a>
+                <a href="">People</a>
+                <a href="">Gift Cards</a>
+                <a href="">Best Sellers</a>
+                <a href="">Bundles</a>
+                <a href="">What's New</a>
+            </div>
+        </div>
+    </header>
+
+    
+
+
+    <section class="product-display">
+        <!-- <div class ="sorted">
+
+        </div> -->
+        <div class ="product-display-container">
+
+            <div class="product" id="ProductId">
+                <img src="./product_gallery/v-planet-mini-bites-kibbles.jpg" alt="dogFood">
+                <h4>V-planet Mini Bites Vegan Adult Dog Food by V-Dog</h4>
+                <h3>Price:<span>38</span></h3>
+                <h3>Rating: &nbsp<span>4.7</span></h3>
+                <div class="CartButton-button-container">
+                    <button class="CartButton">add to Cart</button>
+                </div>
+            </div> 
+        </div>
+
+        
+    </section>
+
+
+
+
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-text-container">
+                 <p>© 2024 PawPalsMarket Connection Inc. All Rights Reserved</p>  
+            </div>
+
+            <div class="footer-image-container">
+                <a href="https://www.greengeeks.ca/going-green">
+                    <img src="./img/pet-community.jpg" alt="petcomunity">
+                </a>
+            </div>
+            <div class="footer-image-container">
+                <img src="./img/Pets-Canada-ENG-Logo-2.png.png" alt="pijac">  
+            </div>
+        </div>
+    </footer>
+
+
+    <script type="module">
+        import Cart from "./js/shoppingCart.js";
+        
+        const productList = new Map();  // product list
+
+        const shoppingCartList= new Map(); // shopping cart list 
+
+        // function to load product from json 
+        const load = () => {
+        const xHttp = new XMLHttpRequest();
+
+        xHttp.onload = () => {
+            // Parse the file data as JSON
+            let tmpData = JSON.parse(xHttp.responseText);
+
+            // Iterate over the data
+            for (let data of tmpData) {
+                // Set key-value pairs in the productList map
+                productList.set(data.pid, data);
+             
+            }
+            //literate the product list
+            for (let value of productList.values()){
+            console.log(value);
+
+              // After loading and populating productList, display the products
+            displayProduct(); // Call the function to display products
+        }
+            
+        };
+        xHttp.open("GET", "./data/mock.data.json"); // Open the request
+        xHttp.send(); // Send the request
+    }
+    load();
+
+    const displayProduct=()=>{
+        const productDisplayContainer = document.querySelector(".product-display-container");
+        productDisplayContainer.innerHTML='';
+
+        for (let product of productList.values()){
+            const productElement = document.createElement("div");
+            productElement.classList.add("product"); // add class name product
+            productElement.id= product.pid; //set up id =pid 
+
+            productElement.innerHTML= 
+            `<img src="${product.imagePath}" alt="${product.category}">
+            <h4>${product.name}</h4>
+            <h3>Price :&nbsp<span>${product.price}</span></h3>
+            <h3>Rating: <span>${product.rating}</span></h3>
+            <div class ="CartButton-button-container">
+                <button class="CartButton">Add to Cart</button>
+            </div>`;
+
+            productDisplayContainer.append(productElement);
+
+        }
+    }
+
+    </script>
+</body>
+
+</html>

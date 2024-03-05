@@ -1,0 +1,103 @@
+[
+    {
+      "pid": "P001",
+      "name": "V-planet Mini Bites Vegan Adult Dog Food by V-Dog",
+      "rating": 5,
+      "category":"dogFood",
+      "price": 38,
+      "imagePath": "./product_gallery/v-planet-mini-bites-kibbles.jpg"
+    },
+     {
+        "pid": "P002",
+        "name": "Oxbow-Organic-Bounty-Rabbit-Food",
+        "rating": 5,
+        "category":"rabbitFood",
+        "price": 30,
+        "imagePath": "./product_gallery/Oxbow-Organic-Bounty-Rabbit-Food-.png"
+    },
+    {
+        "pid": "P003",
+        "name": "Stoter-Farm-Adult-Rabbit-Food11",
+        "rating": 4,
+        "category":"RabbitFood",
+        "price": 19,
+        "imagePath": "./product_gallery/Stoter-Farm-Adult-Rabbit-Food11-.png"
+      },
+       {
+        "pid": "P004",
+        "name": "The-New-Zealand-Natural-Pet-Food-Co-Meow-Venison-Air-Dried-Cat-Food-PixTeller",
+        "rating": 4,
+        "category":"catFood",
+        "price": 25,
+        "imagePath": "./product_gallery/The-New-Zealand-Natural-Pet-Food-Co-Meow-Venison-Air-Dried-Cat-Food-PixTeller.png"
+      },
+      {
+        "pid": "P005",
+        "name": "SquarePet-VFS-PowerCat-Turkey-Chicken-Cat-Food-11-lb-PixTeller",
+        "rating": 5,
+        "category":"catFood",
+        "price": 45,
+        "imagePath": "./product_gallery/SquarePet-VFS-PowerCat-Turkey-Chicken-Cat-Food-11-lb-PixTeller.png"
+      },  
+      {
+        "pid": "P006",
+        "name": "SquarePet-VFS-PowerCat-Herring-Salmon-Cat-Food-11-lb-PixTeller",
+        "rating": 5,
+        "category":"catFood",
+        "price": 45,
+        "imagePath": "./product_gallery/SquarePet-VFS-PowerCat-Herring-Salmon-Cat-Food-11-lb-PixTeller.png"
+      },    
+      {
+        "pid": "P007",
+        "name": "Companions-choice-probiotics-pets-pouch",
+        "rating": 4,
+        "category":"dogFood",
+        "price": 25,
+        "imagePath": "./product_gallery/Companions-choice-probiotics-pets-pouch.png"
+      },  
+      {
+        "pid": "P008",
+        "name": "Farmina-Duck-Broccoli-Asparagus-Quinoa-Neutered-Adult-Cat-Food-PixTeller",
+        "rating": 3,
+        "category":"catFood",
+        "price": 20,
+        "imagePath": "./product_gallery/Farmina-Duck-Broccoli-Asparagus-Quinoa-Neutered-Adult-Cat-Food-PixTeller.png"
+      }, 
+      {
+        "pid": "P009",
+        "name": "Carna4-Handcrafted-Duck-Dog-Food",
+        "rating": 4,
+        "category":"dogFood",
+        "price": 40,
+        "imagePath": "./product_gallery/Carna4-Handcrafted-Duck-Dog-Food-.png"
+      },  
+      {
+        "pid": "P010",
+        "name": "Carna4-Handcrafted-Chicken-Dog-Food",
+        "rating": 4,
+        "category":"dogFood",
+        "price": 40,
+        "imagePath": "./product_gallery/Carna4-Handcrafted-Chicken-Dog-Food-.png"
+      },
+      {
+      
+        "pid": "P011",
+        "name": "Farmina-Ancestral-Grain-Chicken-Pomegranate-Neutered-Adult-Cat-Food-PixTeller",
+        "rating": 3,
+        "category":"catFood",
+        "price": 20,
+        "imagePath": "./product_gallery/Farmina-Ancestral-Grain-Chicken-Pomegranate-Neutered-Adult-Cat-Food-PixTeller.png"
+      },
+      {
+        "pid": "P012",
+        "name": "Oxbow-garden-select-food-young-rabbit",
+        "rating": 4,
+        "category":"rabbitFood",
+        "price": 32,
+        "imagePath": "./product_gallery/Oxbow-garden-select-food-young-rabbit.png"
+      }
+]
+
+  
+
+  
