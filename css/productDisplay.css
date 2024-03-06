@@ -33,12 +33,12 @@
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    gap:1rem;
+    gap:0.6rem;
     width:248px;
     max-width:100%;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
     
 }
 
@@ -60,15 +60,19 @@
 
 .product>h4{
     width:248px;
-    height: 6rem;
+    height: 5.5rem;
     max-width: 100%;
     text-align: center;
+    font-family: 'Roboto', sans-serif;
+    
 }
 
 .product>h3{
     width:248px;
     text-align: center;
     max-width: 100%;
+    font-family: 'Roboto', sans-serif;
+    
 }
 
 .CartButton-button-container{
@@ -84,7 +88,7 @@
 
 
 .CartButton{
-    
+    font-family: 'Roboto', sans-serif;
     background-color: #4CAF50;
     color: white; 
     padding: 12px 1rem; 

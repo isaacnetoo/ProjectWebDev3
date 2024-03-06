@@ -17,7 +17,10 @@
     align-items: center;
 }
 
-
+.text-result-container>h3 {
+    font-family: 'Roboto', sans-serif;
+    
+}
 
 /* Custom Dropdown Styles */
 .select-container {
@@ -26,7 +29,10 @@
     width: 200px;
 }
 
-
+#categoryFilter{
+    font-family: 'Roboto', sans-serif;
+    
+}
 
 .select-container select {
     width: 100%;
@@ -39,6 +45,7 @@
     box-shadow: 0 2px 4px rgba(0,0,0,0.2);
     border-radius: 5px;
     appearance: none; /* Remove default style for IE */
+    
 }
 
 .select-container::after {
