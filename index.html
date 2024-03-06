@@ -251,6 +251,7 @@
             productsArray.sort((a,b) => b.rating-a.rating);
         }
 
+        //counter to display product result 
         let count = 0;
        
         for (let product of productsArray){
@@ -274,10 +275,12 @@
                     <button class="CartButton">Add to Cart</button>
                 </div>`;
 
+                // add products to html 
                 productDisplayContainer.append(productElement);
             }
            
         }
+        // add product result to html 
         productNumCounter.append(count);
     }
 
