@@ -206,7 +206,7 @@
     searchBar.addEventListener('input', e=>{
         // keep tracking user input 
         const inputValue = e.target.value.toLowerCase();
-        console.log(inputValue);
+        // console.log(inputValue);
         displayProduct('all',inputValue)
     })
     
@@ -215,8 +215,8 @@
     // filter and product display based on user option 
     
     const categoryFilter = document.getElementById('categoryFilter');
-    categoryFilter.addEventListener('change', (event) => {
-        const selectedCategory = event.target.value; // Correctly get the selected option
+    categoryFilter.addEventListener('change', e => {
+        const selectedCategory = e.target.value; // Correctly get the selected option
         // console.log(selectedCategory); 
         displayProduct(selectedCategory); // Filter and display products
     });
