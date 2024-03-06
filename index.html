@@ -112,7 +112,7 @@
                     <option value="catFood">Cat&nbsp Products</option>
                     <option value="rabbitFood">Rabbit&nbsp Products</option>
                     <option value="price">Sorted by Price </option>
-                    <option value="rate">Sorted by Rate&nbsp </option>
+                    <option value="rate">Sorted by Rate </option>
                 </select>
             <div/>
         </div>
@@ -198,6 +198,9 @@
     }
     load();
 
+
+
+    
     // filter and product display based on user option 
     
     const categoryFilter = document.getElementById('categoryFilter');
@@ -224,6 +227,7 @@
         //     const product = productsArray[i];
         // }
 
+        
         //logic sort by price from low to high
         if (category ==='price'){
             productsArray.sort((a,b) => a.price-b.price);
