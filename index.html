@@ -105,6 +105,9 @@
 
     <section class="customize-filter">
         <div class="filter-container">
+            <div class="text-result-container">
+                <h3>Found <strong id="productCounter"></strong> matching results for your search.</h3>
+            </div>
             <div class="select-container">
                 <select id="categoryFilter">
                     <option value="all">All&nbsp Products</option>
@@ -138,7 +141,6 @@
             </div> 
         </div>
 
-        
     </section>
 
 
@@ -169,7 +171,7 @@
         const productList = new Map();  // product list
 
         const shoppingCartList= new Map(); // shopping cart list 
-
+        
         // function to load product from json 
         const load = () => {
         const xHttp = new XMLHttpRequest();
@@ -198,7 +200,16 @@
     }
     load();
 
+    // search bar 
+    const searchBar = document.getElementById('search-bar');
 
+    searchBar.addEventListener('input', e=>{
+        // keep tracking user input 
+        const inputValue = e.target.value.toLowerCase();
+        console.log(inputValue);
+        displayProduct('all',inputValue)
+    })
+    
 
     
     // filter and product display based on user option 
@@ -212,12 +223,13 @@
 
 
     // default parameter is all 
-    const displayProduct=(category='all')=>{
+    const displayProduct=(category='all',searchQuery='')=>{
 
         const productDisplayContainer = document.querySelector(".product-display-container");
         productDisplayContainer.innerHTML='';
 
-
+        const productNumCounter = document.getElementById("productCounter");
+        productNumCounter.innerHTML='';
         //initially convert productList map to an array for sorting and filtering
         let productsArray = Array.from(productList.values());
 
@@ -239,13 +251,16 @@
             productsArray.sort((a,b) => b.rating-a.rating);
         }
 
-
-
+        let count = 0;
+       
         for (let product of productsArray){
-           
+            // Matching the user input in the search bar to product name in lowercase 
+            const matchSearchQuery = product.name.toLowerCase().includes(searchQuery);
+
+            console.log(matchSearchQuery);
             //categroy =  dogFood or catFood or rabbitFood or price or rate / all = display all product
-            if (category==='all'|| product.category === category ||category==='price' || category==='rate'){
-             
+            if ((category==='all'|| product.category === category ||category==='price' || category==='rate') && matchSearchQuery){
+                count++;
                 const productElement = document.createElement("div");
                 productElement.classList.add("product"); // add class name product
                 productElement.id= product.pid; //set up id =pid 
@@ -261,7 +276,9 @@
 
                 productDisplayContainer.append(productElement);
             }
+           
         }
+        productNumCounter.append(count);
     }
 
     </script>
