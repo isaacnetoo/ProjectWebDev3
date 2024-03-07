@@ -13,11 +13,14 @@
     <link rel="stylesheet" href="./css/filter.css">
     <link rel="stylesheet" href="./css/productDisplay.css">
     <link rel="stylesheet" href="./css/footer.css">
+    <link rel="stylesheet" href="./css/cart.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
 
 </head>
 
 <body>
+  
     <header>
         <div class="header-container">
             <div class="first-column">
@@ -65,10 +68,10 @@
                     <a href="https://www.canadianpetconnection.ca/my-cart/">MyPetCart</a>
                     <div class="cart-widget">
                         <img src="./img/icons8-add-shopping-cart-50.png" alt="Cart Icon">
-                        <span class="cart-count">3</span> <!-- Assuming there are 3 items in the cart -->
+                        <span class="cart-count">0</span> <!-- Assuming there are 3 items in the cart -->
                     </div>
-                    
-                  
+
+
                 </div>
 
                 <div class="search-container">
@@ -119,18 +122,18 @@
                     <option value="price">Sorted by Price </option>
                     <option value="rate">Sorted by Rate </option>
                 </select>
-            <div/>
-        </div>
+                <div />
+            </div>
     </section>
 
-    
+
 
 
     <section class="product-display">
         <!-- <div class ="sorted">
 
         </div> -->
-        <div class ="product-display-container">
+        <div class="product-display-container">
 
             <div class="product" id="ProductId">
                 <img src="./product_gallery/v-planet-mini-bites-kibbles.jpg" alt="dogFood">
@@ -140,11 +143,39 @@
                 <div class="CartButton-button-container">
                     <button class="CartButton">add to Cart</button>
                 </div>
-            </div> 
+            </div>
         </div>
 
     </section>
 
+    <div class="cartTab">
+        <h1>Shopping Cart <img src="./img/icons8-add-shopping-cart-50.png" alt="Icon" style="width: 25px; height: 25px;"></h1>
+        <div class="listCart">
+            <div class="item">
+                <div class="image">
+                    <img src="./product_gallery/v-planet-mini-bites-kibbles.jpg" alt="items">
+                </div>
+                <div class="name">
+                    NAME
+                </div>
+                <div class="totalPrice">
+                    $200
+                </div>
+                <div class="amount">
+                    <span class="minus">-</span>
+                    <span>1</span>
+                    <span class="plus">+</span>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="btn">
+            <button class="close">CLOSE</button>
+            <button class="check">CHECK OUT</button>
+        </div>
+
+    </div>
 
 
 
@@ -152,7 +183,7 @@
     <footer>
         <div class="footer-container">
             <div class="footer-text-container">
-                 <p>© 2024 PawPalsMarket Connection Inc. All Rights Reserved</p>  
+                <p>© 2024 PawPalsMarket Connection Inc. All Rights Reserved</p>
             </div>
 
             <div class="footer-image-container">
@@ -161,115 +192,115 @@
                 </a>
             </div>
             <div class="footer-image-container">
-                <img src="./img/Pets-Canada-ENG-Logo-2.png.png" alt="pijac">  
+                <img src="./img/Pets-Canada-ENG-Logo-2.png.png" alt="pijac">
             </div>
         </div>
     </footer>
 
-
+  
     <script type="module">
-        import Cart from "./js/shoppingCart.js";
-        
+        import Cart from "./js/cartClass.js";
+
         const productList = new Map();  // product list
 
-        const shoppingCartList= new Map(); // shopping cart list 
-        
+        const shoppingCartList = new Map(); // shopping cart list 
+
         // function to load product from json 
         const load = () => {
-        const xHttp = new XMLHttpRequest();
+            const xHttp = new XMLHttpRequest();
 
-        xHttp.onload = () => {
-            // Parse the file data as JSON
-            let tmpData = JSON.parse(xHttp.responseText);
+            xHttp.onload = () => {
+                // Parse the file data as JSON
+                let tmpData = JSON.parse(xHttp.responseText);
 
-            // Iterate over the data
-            for (let data of tmpData) {
-                // Set key-value pairs in the productList map
-                productList.set(data.pid, data);
-             
+                // Iterate over the data
+                for (let data of tmpData) {
+                    // Set key-value pairs in the productList map
+                    productList.set(data.pid, data);
+
+                }
+                //literate the product list
+                for (let value of productList.values()) {
+                    console.log(value);
+
+                    // After loading and populating productList, display the products
+                    displayProduct(); // Call the function to display products
+                }
+
+            };
+            xHttp.open("GET", "./data/mock.data.json"); // Open the request
+            xHttp.send(); // Send the request
+        }
+        load();
+
+        // search bar 
+        const searchBar = document.getElementById('search-bar');
+
+        searchBar.addEventListener('input', e => {
+            // keep tracking user input 
+            const inputValue = e.target.value.toLowerCase();
+            // console.log(inputValue);
+            displayProduct('all', inputValue)
+        })
+
+
+
+        // filter and product display based on user option 
+
+        const categoryFilter = document.getElementById('categoryFilter');
+        categoryFilter.addEventListener('change', e => {
+            const selectedCategory = e.target.value; // Correctly get the selected option
+            // console.log(selectedCategory); 
+            displayProduct(selectedCategory); // Filter and display products
+        });
+
+
+        // default parameter is all 
+        const displayProduct = (category = 'all', searchQuery = '') => {
+
+            const productDisplayContainer = document.querySelector(".product-display-container");
+            productDisplayContainer.innerHTML = '';
+
+            const productNumCounter = document.getElementById("productCounter");
+            productNumCounter.innerHTML = '';
+            //initially convert productList map to an array for sorting and filtering
+            let productsArray = Array.from(productList.values());
+
+            //so now in this array, there are several product object, product.name = product name 
+            // the way to iterate the products array 
+            // for (let i = 0; i < productsArray.length; i++) {
+            //     const product = productsArray[i];
+            // }
+
+
+            //logic sort by price from low to high
+            if (category === 'price') {
+                productsArray.sort((a, b) => a.price - b.price);
+
             }
-            //literate the product list
-            for (let value of productList.values()){
-            console.log(value);
 
-              // After loading and populating productList, display the products
-            displayProduct(); // Call the function to display products
-        }
-            
-        };
-        xHttp.open("GET", "./data/mock.data.json"); // Open the request
-        xHttp.send(); // Send the request
-    }
-    load();
+            // logic sort by rating form high to low 
+            if (category === 'rate') {
+                productsArray.sort((a, b) => b.rating - a.rating);
+            }
 
-    // search bar 
-    const searchBar = document.getElementById('search-bar');
+            //counter to display product result 
+            let count = 0;
 
-    searchBar.addEventListener('input', e=>{
-        // keep tracking user input 
-        const inputValue = e.target.value.toLowerCase();
-        // console.log(inputValue);
-        displayProduct('all',inputValue)
-    })
-    
+            for (let product of productsArray) {
+                // Matching the user input in the search bar to product name in lowercase 
+                const matchSearchQuery = product.name.toLowerCase().includes(searchQuery);
 
-    
-    // filter and product display based on user option 
-    
-    const categoryFilter = document.getElementById('categoryFilter');
-    categoryFilter.addEventListener('change', e => {
-        const selectedCategory = e.target.value; // Correctly get the selected option
-        // console.log(selectedCategory); 
-        displayProduct(selectedCategory); // Filter and display products
-    });
+                console.log(matchSearchQuery);
+                //categroy =  dogFood or catFood or rabbitFood or price or rate / all = display all product
+                if ((category === 'all' || product.category === category || category === 'price' || category === 'rate') && matchSearchQuery) {
+                    count++;
+                    const productElement = document.createElement("div");
+                    productElement.classList.add("product"); // add class name product
+                    productElement.id = product.pid; //set up id =pid 
 
-
-    // default parameter is all 
-    const displayProduct=(category='all',searchQuery='')=>{
-
-        const productDisplayContainer = document.querySelector(".product-display-container");
-        productDisplayContainer.innerHTML='';
-
-        const productNumCounter = document.getElementById("productCounter");
-        productNumCounter.innerHTML='';
-        //initially convert productList map to an array for sorting and filtering
-        let productsArray = Array.from(productList.values());
-
-        //so now in this array, there are several product object, product.name = product name 
-        // the way to iterate the products array 
-        // for (let i = 0; i < productsArray.length; i++) {
-        //     const product = productsArray[i];
-        // }
-
-        
-        //logic sort by price from low to high
-        if (category ==='price'){
-            productsArray.sort((a,b) => a.price-b.price);
-     
-        }
-        
-        // logic sort by rating form high to low 
-        if(category==='rate'){
-            productsArray.sort((a,b) => b.rating-a.rating);
-        }
-
-        //counter to display product result 
-        let count = 0;
-       
-        for (let product of productsArray){
-            // Matching the user input in the search bar to product name in lowercase 
-            const matchSearchQuery = product.name.toLowerCase().includes(searchQuery);
-
-            console.log(matchSearchQuery);
-            //categroy =  dogFood or catFood or rabbitFood or price or rate / all = display all product
-            if ((category==='all'|| product.category === category ||category==='price' || category==='rate') && matchSearchQuery){
-                count++;
-                const productElement = document.createElement("div");
-                productElement.classList.add("product"); // add class name product
-                productElement.id= product.pid; //set up id =pid 
-
-                productElement.innerHTML= 
-                `<img src="${product.imagePath}" alt="${product.category}">
+                    productElement.innerHTML =
+                        `<img src="${product.imagePath}" alt="${product.category}">
                 <h4>${product.name}</h4>
                 <h3>Price :&nbsp<span>${product.price}</span></h3>
                 <h3>Rating: <span>${product.rating}</span></h3>
@@ -277,16 +308,18 @@
                     <button class="CartButton">Add to Cart</button>
                 </div>`;
 
-                // add products to html 
-                productDisplayContainer.append(productElement);
+                    // add products to html 
+                    productDisplayContainer.append(productElement);
+                }
+
             }
-           
+            // add product result to html 
+            productNumCounter.append(count);
         }
-        // add product result to html 
-        productNumCounter.append(count);
-    }
 
     </script>
+    <!-- external cart  js  -->
+    <script src="./js/cart.js"></script>
 </body>
 
 </html>
