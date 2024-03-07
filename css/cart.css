@@ -30,7 +30,12 @@ body.showCart .cartTab{
     font-weight:300;
 }
 
+.cartTab .totalPrice{
+    padding:1rem;
+}
+
 .cartTab .btn{
+    height:60px;
     display:grid;
     grid-template-columns:repeat(2,1fr);
 }
