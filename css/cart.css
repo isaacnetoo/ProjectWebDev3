@@ -56,12 +56,19 @@ body.showCart .cartTab{
 .cartTab .listCart .item{
     color:whitesmoke;
     display:grid;
-    grid-template-columns: 70px 100px 50px 1fr;
+    grid-template-columns: 80px 120px 50px 1fr;
     gap:8px;
     text-align: center;
     align-items: center;
     padding:1rem 1rem;
 }
+
+.name{
+    font-size: 12px;
+}
+
+
+
 /* 
 icon for plus and minus amount */
 .listCart .amount span{
