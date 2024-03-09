@@ -70,10 +70,15 @@ export function handleCart(e) {
     console.log(SelectItem.name); //  SelectItem.id = product id ,  SelectItem.name = product name ....and so
 
     if (shoppingCartList.has(SelectItem.pid)) {
-        let existProduct = shoppingCartList.get(SelectItem.pid);  // retrieve that item in the cart throught id 
-        console.log("cart already has this item so amount +1 " + existProduct);
-        existProduct.amount++; // because cart already has that item so amount ++ 
-        console.log("prodcut amount" + existProduct.amount);
+        let existingProduct = shoppingCartList.get(SelectItem.pid);  // retrieve that item in the cart throught id 
+        console.log("cart already has this item so amount +1 " + existingProduct);
+          // Check if adding another would exceed the limit
+          if (existingProduct.amount >= 50) {
+            alert("Sorry products not available!!!");
+        } else {
+            existingProduct.amount++; // Since cart already has that item and limit not reached, amount++
+            console.log("Product amount: " + existingProduct.amount);
+        }
     }
     else {
         let tmpProduct = new Cart(SelectItem.pid, SelectItem.name, SelectItem.category, SelectItem.price, SelectItem.rating, SelectItem.imagePath);
@@ -91,7 +96,7 @@ export function displayCart() {
     document.querySelector('.listCart').innerHTML = ""; // reset the cart
     let priceSum = 0;
     let itemAmountSum = 0;
-
+    
     for (let pr of shoppingCartList.values()) {
         let product = shoppingCartList.get(pr.pid);
         console.log("this is pr " + product.pid);
@@ -150,7 +155,6 @@ export function displayCart() {
         // listCart append all item 
         document.querySelector('.listCart').append(item);
 
-      
      
     }
     console.log("the cart size is "+ shoppingCartList.size)
@@ -210,7 +214,7 @@ function handlePlus(e) {
     if (shoppingCartList.has(productId)) {
         let product = shoppingCartList.get(productId); // access shopping cart product through product id 
 
-        if (product.amount > 0) {
+        if (product.amount > 0 && product.amount<50) {
 
             product.amount++;
             // note here is not document.querySelector , it's itemContainer.querySelector 
@@ -218,11 +222,11 @@ function handlePlus(e) {
             const itemAmount = itemContainer.querySelector('.itemAmount');
             itemAmount.textContent = product.amount;
             displayCart();
-        }
-
-        if (product.amount > 50) {
+        }else{
             alert("Sorry products not available!!!");
         }
+
+       
 
     }
 }

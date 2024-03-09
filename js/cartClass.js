@@ -8,6 +8,8 @@ class OurPetCartClass {
         this.price = Number(price); 
         this.imagePath = imagePath;
         this.amount = Number(amount);
+
+       
     }
 
 
