@@ -25,13 +25,14 @@ let addToCart = document.querySelector('.CartButton');
 let reset = document.querySelector('.reset');
 reset.addEventListener('click', ()=> {
   
-    // Clear all items in the cart
-    shoppingCartList.clear();
+
 
     if (shoppingCartList.size === 0) {
-        console.log("Cart is now empty.");
+        alert("Cart is now empty.");
     } else {
         console.log("Cart has items.");
+        // Clear all items in the cart
+        shoppingCartList.clear();
     }
 
     displayCart(); //render cart again 
