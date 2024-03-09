@@ -1,13 +1,13 @@
 class OurPetCartClass {
-    constructor(pid, pname,category, price, amount, rating){
+    constructor(pid, pname,category, price, rating,imagePath, amount = 1){
 
         this.pid = pid ; 
         this.name = pname; 
         this.category = category;
         this.rating=Number(rating);
         this.price = Number(price); 
+        this.imagePath = imagePath;
         this.amount = Number(amount);
-
     }
 
 
@@ -15,6 +15,9 @@ class OurPetCartClass {
     cartTotal() {
         return (this.price * this.amount).toFixed(2);
     }
+
+
+    
 }
 
 

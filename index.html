@@ -149,149 +149,34 @@
     </section>
 
     <div class="cartTab">
-        <h1>Shopping Cart <img src="./img/icons8-add-shopping-cart-50.png" alt="Icon" style="width: 25px; height: 25px;"></h1>
+        <h1>Shopping Cart <img src="./img/icons8-add-shopping-cart-50.png" alt="Icon" style="width: 25px; height: 25px;" id="firstCartIcon"></h1>
         <div class="listCart">
-            <div class="item">
+            <!-- product display in cart template  -->
+            <!-- <div class="item">
                 <div class="image">
                     <img src="./product_gallery/v-planet-mini-bites-kibbles.jpg" alt="items">
                 </div>
                 <div class="name">
                     Farmina-Ancestral-Grain-Chicken-Pomegranate-Neutered-Adult-Cat-Food-PixTeller
                 </div>
-                <div class="totalPrice">
+                <div class="itemPrice">
                     $38
                 </div>
                 <div class="amount">
                     <span class="minus">-</span>
-                    <span>1</span>
+                    <span class="itemAmount" >1</span>
                     <span class="plus">+</span>
                 </div>
 
-            </div>
-            <div class="item">
-                <div class="image">
-                    <img src="./product_gallery/Carna4-Handcrafted-Duck-Dog-Food-.png" alt="items">
-                </div>
-                <div class="name">
-                    Oxbow-Organic-Bounty-Rabbit-Food
-                </div>
-                <div class="totalPrice">
-                    $30
-                </div>
-                <div class="amount">
-                    <span class="minus">-</span>
-                    <span>1</span>
-                    <span class="plus">+</span>
-                </div>
-
-            </div>
-            <div class="item">
-                <div class="image">
-                    <img src="./product_gallery/Carna4-Handcrafted-Duck-Dog-Food-.png" alt="items">
-                </div>
-                <div class="name">
-                    Oxbow-Organic-Bounty-Rabbit-Food
-                </div>
-                <div class="totalPrice">
-                    $30
-                </div>
-                <div class="amount">
-                    <span class="minus">-</span>
-                    <span>1</span>
-                    <span class="plus">+</span>
-                </div>
-
-            </div>
-            <div class="item">
-                <div class="image">
-                    <img src="./product_gallery/Carna4-Handcrafted-Duck-Dog-Food-.png" alt="items">
-                </div>
-                <div class="name">
-                    Oxbow-Organic-Bounty-Rabbit-Food
-                </div>
-                <div class="totalPrice">
-                    $30
-                </div>
-                <div class="amount">
-                    <span class="minus">-</span>
-                    <span>1</span>
-                    <span class="plus">+</span>
-                </div>
-
-            </div>
-            <div class="item">
-                <div class="image">
-                    <img src="./product_gallery/Carna4-Handcrafted-Duck-Dog-Food-.png" alt="items">
-                </div>
-                <div class="name">
-                    Oxbow-Organic-Bounty-Rabbit-Food
-                </div>
-                <div class="totalPrice">
-                    $30
-                </div>
-                <div class="amount">
-                    <span class="minus">-</span>
-                    <span>1</span>
-                    <span class="plus">+</span>
-                </div>
-
-            </div>
-            <div class="item">
-                <div class="image">
-                    <img src="./product_gallery/Carna4-Handcrafted-Duck-Dog-Food-.png" alt="items">
-                </div>
-                <div class="name">
-                    Oxbow-Organic-Bounty-Rabbit-Food
-                </div>
-                <div class="totalPrice">
-                    $30
-                </div>
-                <div class="amount">
-                    <span class="minus">-</span>
-                    <span>1</span>
-                    <span class="plus">+</span>
-                </div>
-
-            </div>
-            <div class="item">
-                <div class="image">
-                    <img src="./product_gallery/Carna4-Handcrafted-Duck-Dog-Food-.png" alt="items">
-                </div>
-                <div class="name">
-                    Oxbow-Organic-Bounty-Rabbit-Food
-                </div>
-                <div class="totalPrice">
-                    $30
-                </div>
-                <div class="amount">
-                    <span class="minus">-</span>
-                    <span>1</span>
-                    <span class="plus">+</span>
-                </div>
-
-            </div>
-            <div class="item">
-                <div class="image">
-                    <img src="./product_gallery/Carna4-Handcrafted-Duck-Dog-Food-.png" alt="items">
-                </div>
-                <div class="name">
-                    Oxbow-Organic-Bounty-Rabbit-Food
-                </div>
-                <div class="totalPrice">
-                    $30
-                </div>
-                <div class="amount">
-                    <span class="minus">-</span>
-                    <span>1</span>
-                    <span class="plus">+</span>
-                </div>
-
-            </div>
+            </div> -->
+            
+            
 
         </div>
-        <div class="totalPrice"><h3>Total Price: 1000</h3></div>
+        <div class="totalPrice"><h4>You have added <span class="itemNumber">0</span> to your Cart. <br>Total Price: <span class="total-price"><span>0</span></h3></div>
         <div class="btn">
-            <button class="close">CLOSE</button>
+            <button class="close">CLOSE CART</button>
+            <button class="reset">RESET CART</button>
             <button class="check">CHECK OUT</button>
         </div>
 
@@ -320,10 +205,12 @@
   
     <script type="module">
         import Cart from "./js/cartClass.js";
+        import { productList, shoppingCartList } from './js/dataStore.js';
+        import {handleCart} from './js/cart.js';
+        // const productList = new Map();  // already created the map in datastore.js
+        // const shoppingCartList = new Map(); // already created the map in datastore.js
 
-        const productList = new Map();  // product list
-
-        const shoppingCartList = new Map(); // shopping cart list 
+  
 
         // function to load product from json 
         const load = () => {
@@ -418,28 +305,39 @@
                     const productElement = document.createElement("div");
                     productElement.classList.add("product"); // add class name product
                     productElement.id = product.pid; //set up id =pid 
+                    //handle click event of add to cart 
+                    
 
                     productElement.innerHTML =
                         `<img src="${product.imagePath}" alt="${product.category}">
-                <h4>${product.name}</h4>
-                <h3>Price :&nbsp<span>${product.price}</span></h3>
-                <h3>Rating: <span>${product.rating}</span></h3>
-                <div class ="CartButton-button-container">
-                    <button class="CartButton">Add to Cart</button>
-                </div>`;
+                        <h4>${product.name}</h4>
+                        <h3>Price :&nbsp<span>${product.price}</span></h3>
+                        <h3>Rating: <span>${product.rating}</span></h3>
+                        <div class ="CartButton-button-container">
+                            <button class="CartButton">Add to Cart</button>
+                        </div>`;
 
                     // add products to html 
+                 
                     productDisplayContainer.append(productElement);
                 }
 
             }
             // add product result to html 
             productNumCounter.append(count);
+
+            // add click event to add to cart button 
+            for(let addtoCart of document.querySelectorAll(".CartButton")){
+              
+                addtoCart.addEventListener("click",handleCart);
+     
+            }
         }
 
     </script>
     <!-- external cart  js  -->
-    <script src="./js/cart.js"></script>
+    <script type="module" src="./js/cart.js"></script>
+
 </body>
 
 </html>

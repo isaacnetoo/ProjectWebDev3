@@ -1,4 +1,8 @@
+import { productList, shoppingCartList } from './dataStore.js';
+import Cart from "./cartClass.js";
 
+// target first cart icon 
+let firstCartIcon = document.getElementById('firstCartIcon');
 
 // target cart icon 
 let cartIcon = document.querySelector('.cart-widget');
@@ -9,18 +13,46 @@ let closeCart = document.querySelector('.close');
 //target  checkout button 
 let checkOut = document.querySelector('.check');
 
-
-
 // target body
-let body =document.querySelector('body');
+let body = document.querySelector('body');
+
+//target add to cart 
+let addToCart = document.querySelector('.CartButton');
+
+
+
+//target reset button 
+let reset = document.querySelector('.reset');
+reset.addEventListener('click', ()=> {
+  
+    // Clear all items in the cart
+    shoppingCartList.clear();
+
+    if (shoppingCartList.size === 0) {
+        console.log("Cart is now empty.");
+    } else {
+        console.log("Cart has items.");
+    }
+
+    displayCart(); //render cart again 
+
+    console.log("check display");
+   
+})
+
+
+
+firstCartIcon.addEventListener('click', () => {
+    body.classList.toggle('showCart');
+})
 
 //click event to display cart or disappear cart 
-cartIcon.addEventListener('click', ()=>{
+cartIcon.addEventListener('click', () => {
     body.classList.toggle('showCart');
 })
 
 //click event to disappear cart 
-closeCart.addEventListener('click', ()=>{
+closeCart.addEventListener('click', () => {
     body.classList.toggle('showCart');
 })
 
@@ -30,3 +62,167 @@ checkOut.addEventListener('click', () => {
 });
 
 
+export function handleCart(e) {
+
+    const productId = e.target.closest('.product').id; //id string type
+
+    const SelectItem = productList.get(productId); // object 
+    console.log(SelectItem.name); //  SelectItem.id = product id ,  SelectItem.name = product name ....and so
+
+    if (shoppingCartList.has(SelectItem.pid)) {
+        let existProduct = shoppingCartList.get(SelectItem.pid);  // retrieve that item in the cart throught id 
+        console.log("cart already has this item so amount +1 " + existProduct);
+        existProduct.amount++; // because cart already has that item so amount ++ 
+        console.log("prodcut amount" + existProduct.amount);
+    }
+    else {
+        let tmpProduct = new Cart(SelectItem.pid, SelectItem.name, SelectItem.category, SelectItem.price, SelectItem.rating, SelectItem.imagePath);
+        console.log("this is tmp :" + tmpProduct.name);
+        shoppingCartList.set(tmpProduct.pid, tmpProduct);
+    }
+    displayCart();
+
+}
+
+
+//cart format -> image / name / price/ minus / itemAmount / plus
+
+export function displayCart() {
+    document.querySelector('.listCart').innerHTML = ""; // reset the cart
+    let priceSum = 0;
+    let itemAmountSum = 0;
+
+    for (let pr of shoppingCartList.values()) {
+        let product = shoppingCartList.get(pr.pid);
+        console.log("this is pr " + product.pid);
+        let item = document.createElement('div');
+        item.className = 'item';
+        item.setAttribute('data-pid', product.pid); // Set data attribute with product ID
+        // append image to item div 
+        let imageContainer = document.createElement('div');
+        imageContainer.className = 'image';
+        let image = document.createElement('img');
+        image.src = product.imagePath;
+        image.alt = `items-${product.pid}`;
+        imageContainer.appendChild(image);
+        // item.append(imageContainer);
+
+        // append product name to item div 
+        let nameContainer = document.createElement('div');
+        nameContainer.className = 'name'
+        nameContainer.innerHTML = product.name;
+        // item.append(nameContainer);
+
+        //append total price to item div 
+        let priceContainer = document.createElement('div');
+        priceContainer.className = 'itemPrice'
+        priceContainer.innerHTML = `$${product.price}`;
+        // item.append( priceContainer);
+
+        //append amount to item div 
+        let amountContainer = document.createElement('div');
+        amountContainer.className = 'amount';
+
+        //minus 
+        let minusContainer = document.createElement('span');
+        minusContainer.className = 'minus';
+        minusContainer.innerText = '-';
+
+        //item amount
+        let itemAmountContainer = document.createElement('span');
+        itemAmountContainer.className = 'itemAmount';
+        itemAmountContainer.innerText = product.amount;
+
+        //plus
+        let PlusContainer = document.createElement('span');
+        PlusContainer.className = 'plus';
+        PlusContainer.innerText = '+';
+
+        priceSum  += Number(pr.cartTotal());
+        itemAmountSum +=Number(pr.amount);
+
+        // append minus, item amount and plus into amountContainer 
+        amountContainer.append(minusContainer, itemAmountContainer, PlusContainer);
+
+        // append all in to item in a row 
+        item.append(imageContainer, nameContainer, priceContainer, amountContainer)
+
+        // listCart append all item 
+        document.querySelector('.listCart').append(item);
+
+      
+     
+    }
+    console.log("the cart size is "+ shoppingCartList.size)
+ 
+    document.querySelector('.total-price').innerText= priceSum; 
+
+    // target itemNumber tag then add itemsum to there 
+    document.querySelector('.itemNumber').innerText= itemAmountSum;
+
+    document.querySelector('.cart-count').innerText=itemAmountSum;
+
+    // add click event to each minus button 
+    for (let minus of document.querySelectorAll('.minus')) {
+        minus.addEventListener("click", handleMinus);
+    }
+
+    // add click event to each plus button 
+    for (let plus of document.querySelectorAll('.plus')) {
+        plus.addEventListener("click", handlePlus);
+
+    }
+}
+
+
+
+function handleMinus(e) {
+
+    const itemContainer = e.target.closest('.item');  // Find the closest parent item container
+    const productId = itemContainer.getAttribute('data-pid'); // Retrieve the product ID from the data-pid attribute
+    console.log("minus product id " + productId);
+    if (shoppingCartList.has(productId)) {
+        let product = shoppingCartList.get(productId); // access shopping cart product through product id 
+
+        if (product.amount > 0) {
+
+            product.amount--;
+            // note here is not document.querySelector , it's itemContainer.querySelector 
+            // Find the .itemAmount element within the same .item container and update its text
+            const itemAmount = itemContainer.querySelector('.itemAmount');
+            itemAmount.textContent = product.amount;
+            displayCart();
+        }
+        if (product.amount == 0) {
+            shoppingCartList.delete(product.pid); // if amount == 0 delete product 
+            displayCart(); //render cart again 
+        }
+
+
+    }
+
+}
+
+function handlePlus(e) {
+    const itemContainer = e.target.closest('.item');  // Find the closest parent item container
+    const productId = itemContainer.getAttribute('data-pid'); // Retrieve the product ID from the data-pid attribute
+
+    if (shoppingCartList.has(productId)) {
+        let product = shoppingCartList.get(productId); // access shopping cart product through product id 
+
+        if (product.amount > 0) {
+
+            product.amount++;
+            // note here is not document.querySelector , it's itemContainer.querySelector 
+            // Find the .itemAmount element within the same .item container and update its text
+            const itemAmount = itemContainer.querySelector('.itemAmount');
+            itemAmount.textContent = product.amount;
+            displayCart();
+        }
+
+        if (product.amount > 50) {
+            alert("Sorry products not available!!!");
+        }
+
+    }
+}

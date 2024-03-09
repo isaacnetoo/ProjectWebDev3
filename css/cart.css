@@ -37,11 +37,11 @@ body.showCart .cartTab{
 .cartTab .btn{
     height:60px;
     display:grid;
-    grid-template-columns:repeat(2,1fr);
+    grid-template-columns:repeat(3,1fr);
 }
 
 .cartTab .btn button{
-    background-color:yellowgreen;
+    background-color:chocolate;
     border:none;
     font-family: 'Roboto', sans-serif;
     
@@ -50,11 +50,17 @@ body.showCart .cartTab{
 }
 
 .cartTab .btn .close{
+   
+    background-color: yellowgreen;
+}
+
+.cartTab .btn .reset{
     background-color: #eee;
 }
 
 .cartTab .listCart .item img{
     width:100%;
+    border-radius:10px;
 }
 
 /* img name price in a row */
@@ -73,9 +79,14 @@ body.showCart .cartTab{
 }
 
 
-
 /* 
 icon for plus and minus amount */
+.amount {
+    display: flex;
+    gap: 3px; /* Adjust the value as needed */
+}
+
+
 .listCart .amount span{
     display:inline-block;
     width:25px;
@@ -84,7 +95,7 @@ icon for plus and minus amount */
     color:#555;
     border-radius: 50%;
     cursor:pointer;
-
+    
 }
 
 /*check what does this target for */
