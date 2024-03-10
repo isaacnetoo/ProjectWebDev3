@@ -65,7 +65,7 @@
             <div class="third-column">
 
                 <button class="hamburger-menu" aria-label="Open menu">
-                    <img src="./img/icons8-hamburger-menu-50.png" alt="Menu">
+                    <img src="./img/icons8-hamburger-menu-50.png" alt="Menu" id="BurgerMenu">
                 </button>
                 <div class="third-column-first-row">
                     <a href="./index.html">Home</a>
@@ -220,6 +220,7 @@
         // hamburger menu
         document.addEventListener("DOMContentLoaded", function () {
             const hamburgerMenu = document.querySelector('.hamburger-menu');
+            const burgerImg = document.getElementById('BurgerMenu')
             // Use querySelectorAll to get all links you want to toggle
             const navLinks = document.querySelectorAll('.third-column-first-row a');
 
@@ -228,7 +229,17 @@
                 navLinks.forEach(link => {
                     link.classList.toggle('show-links');
                 });
-            });
+
+                if (burgerImg.getAttribute('src') === "./img/icons8-hamburger-menu-50.png") {
+                    // If currently hamburger icon, change to close icon
+                    burgerImg.src = "./img/icons8-close-50.png";
+                } else {
+                    // If currently close icon, change back to hamburger icon
+                    burgerImg.src = "./img/icons8-hamburger-menu-50.png";
+                }
+                    });
+
+          
         });
 
 
