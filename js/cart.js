@@ -19,12 +19,12 @@ let body = document.querySelector('body');
 //target add to cart 
 let addToCart = document.querySelector('.CartButton');
 
-
+// Call this function when the page loads
+document.addEventListener('DOMContentLoaded', loadCartFromLocalStorage);
 
 //target reset button 
 let reset = document.querySelector('.reset');
 reset.addEventListener('click', ()=> {
-  
 
 
     if (shoppingCartList.size === 0) {
@@ -34,9 +34,9 @@ reset.addEventListener('click', ()=> {
         // Clear all items in the cart
         shoppingCartList.clear();
     }
-
+    localStorage.removeItem('shoppingCart'); // Clear cart data from localStorage ->shoppingCart is the key
     displayCart(); //render cart again 
-
+   
     console.log("check display");
    
 })
@@ -86,15 +86,37 @@ export function handleCart(e) {
         console.log("this is tmp :" + tmpProduct.name);
         shoppingCartList.set(tmpProduct.pid, tmpProduct);
     }
-    displayCart();
 
+    saveCartToLocalStorage();
+    displayCart();
 }
+
+function loadCartFromLocalStorage() {
+    const storedCartData = localStorage.getItem('shoppingCart');
+    if (storedCartData) {
+        const cartArray = JSON.parse(storedCartData);
+        shoppingCartList.clear(); // Clear the current Map
+
+        for (let item of cartArray) {
+            // iterate cartArray data in local storage and populate into shoppingCartList 
+            const cartItem = new Cart(item.pid, item.name, item.category, item.price, item.rating, item.imagePath, item.amount);
+             // Repopulate the Map
+            shoppingCartList.set(item.pid, cartItem);
+        }
+
+        displayCart(); // re-render cart page 
+
+    }
+}
+
+
 
 
 //cart format -> image / name / price/ minus / itemAmount / plus
 
 export function displayCart() {
     document.querySelector('.listCart').innerHTML = ""; // reset the cart
+    
     let priceSum = 0;
     let itemAmountSum = 0;
     
@@ -144,8 +166,8 @@ export function displayCart() {
         PlusContainer.className = 'plus';
         PlusContainer.innerText = '+';
 
-        priceSum  += Number(pr.cartTotal());
-        itemAmountSum +=Number(pr.amount);
+        // priceSum  += Number(pr.cartTotal());
+        // itemAmountSum +=Number(pr.amount);
 
         // append minus, item amount and plus into amountContainer 
         amountContainer.append(minusContainer, itemAmountContainer, PlusContainer);
@@ -156,16 +178,8 @@ export function displayCart() {
         // listCart append all item 
         document.querySelector('.listCart').append(item);
 
-     
     }
-    console.log("the cart size is "+ shoppingCartList.size)
- 
-    document.querySelector('.total-price').innerText= priceSum; 
 
-    // target itemNumber tag then add itemsum to there 
-    document.querySelector('.itemNumber').innerText= itemAmountSum;
-
-    document.querySelector('.cart-count').innerText=itemAmountSum;
 
     // add click event to each minus button 
     for (let minus of document.querySelectorAll('.minus')) {
@@ -177,9 +191,43 @@ export function displayCart() {
         plus.addEventListener("click", handlePlus);
 
     }
+
+        // iterate the cart which store in localstorage
+    // Retrieve the stored data from localStorage
+    const storedCartData = localStorage.getItem('shoppingCart');
+ 
+    if (storedCartData) {
+        const cartArray = JSON.parse(storedCartData);
+        for (let item of cartArray) {
+            console.log("localStorage item amount: " + item.amount);
+            itemAmountSum+=item.amount;
+            let itemSum = Number(item.price)*Number(item.amount);
+            console.log('this is'+itemSum);
+            priceSum += itemSum;
+        }
+    } else {
+
+        console.log("No cart data found in localStorage.");
+        
+    }
+
+
+    console.log("the cart size is "+ shoppingCartList.size)
+ 
+    document.querySelector('.total-price').innerText= priceSum; 
+
+    // target itemNumber tag then add itemsum to there 
+    document.querySelector('.itemNumber').innerText= itemAmountSum;
+
+    document.querySelector('.cart-count').innerText=itemAmountSum;
+
 }
 
-
+function saveCartToLocalStorage() {
+    console.log("this is local storage");
+    const cartData = Array.from(shoppingCartList.values()); // Convert Map values to an Array
+    localStorage.setItem('shoppingCart', JSON.stringify(cartData)); // Serialize and save
+}
 
 function handleMinus(e) {
 
@@ -196,11 +244,16 @@ function handleMinus(e) {
             // Find the .itemAmount element within the same .item container and update its text
             const itemAmount = itemContainer.querySelector('.itemAmount');
             itemAmount.textContent = product.amount;
+            saveCartToLocalStorage()
             displayCart();
+           
         }
         if (product.amount == 0) {
+            
             shoppingCartList.delete(product.pid); // if amount == 0 delete product 
+            saveCartToLocalStorage()
             displayCart(); //render cart again 
+         
         }
 
 
@@ -222,7 +275,9 @@ function handlePlus(e) {
             // Find the .itemAmount element within the same .item container and update its text
             const itemAmount = itemContainer.querySelector('.itemAmount');
             itemAmount.textContent = product.amount;
+            saveCartToLocalStorage();
             displayCart();
+           
         }else{
             alert("Sorry products not available!!!");
         }
