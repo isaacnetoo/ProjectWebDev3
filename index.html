@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Find & buy the best bet products in Canada online </title>
+    <title>Find & buy the best bet products in Canada online</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="./css/body.css">
@@ -13,15 +13,17 @@
     <link rel="stylesheet" href="./css/filter.css">
     <link rel="stylesheet" href="./css/productDisplay.css">
     <link rel="stylesheet" href="./css/footer.css">
-    <link rel="stylesheet" href="./css/imageslide.css">
     <link rel="stylesheet" href="./css/cart.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/imageslide.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;500;700&display=swap"
+        rel="stylesheet">
 
 
 </head>
 
 <body>
-  
+
     <header>
         <div class="header-container">
             <div class="first-column">
@@ -62,6 +64,10 @@
             </div>
 
             <div class="third-column">
+
+                <button class="hamburger-menu" aria-label="Open menu">
+                    <img src="./img/icons8-hamburger-menu-50.png" alt="Menu" id="BurgerMenu">
+                </button>
                 <div class="third-column-first-row">
                     <a href="./index.html">Home</a>
                     <a href="https://www.canadianpetconnection.ca/get-to-know-us/">About Us</a>
@@ -71,14 +77,14 @@
                         <img src="./img/icons8-add-shopping-cart-50.png" alt="Cart Icon">
                         <span class="cart-count">0</span> <!-- Assuming there are 3 items in the cart -->
                     </div>
-
-
                 </div>
+
+
 
                 <div class="search-container">
                     <input type="text" placeholder="What are you looking for today?" id="search-bar">
                     <ul id="suggestions"></ul>
-                </div>
+                </div>               
 
                 <div class="third-column-third-row">
 
@@ -104,7 +110,6 @@
                 <a href="">Gift Cards</a>
                 <a href="">Best Sellers</a>
                 <a href="">Bundles</a>
-                <a href="">What's New</a>
             </div>
         </div>
     </header>
@@ -134,7 +139,7 @@
             </div>
         </div>
         <img src="./img/1723827.png" id="NextBtn">
-    </div>
+    </div> 
 
 
     <section class="customize-filter">
@@ -178,29 +183,38 @@
     </section>
 
     <div class="cartTab">
-        <h1>Shopping Cart <img src="./img/icons8-add-shopping-cart-50.png" alt="Icon" style="width: 25px; height: 25px;"></h1>
+        <h1>Shopping Cart <img src="./img/icons8-add-shopping-cart-50.png" alt="Icon" style="width: 25px; height: 25px;"
+                id="firstCartIcon"></h1>
         <div class="listCart">
-            <div class="item">
+            <!-- product display in cart template  -->
+            <!-- <div class="item">
                 <div class="image">
                     <img src="./product_gallery/v-planet-mini-bites-kibbles.jpg" alt="items">
                 </div>
                 <div class="name">
-                    NAME
+                    Farmina-Ancestral-Grain-Chicken-Pomegranate-Neutered-Adult-Cat-Food-PixTeller
                 </div>
-                <div class="totalPrice">
-                    $200
+                <div class="itemPrice">
+                    $38
                 </div>
                 <div class="amount">
                     <span class="minus">-</span>
-                    <span>1</span>
+                    <span class="itemAmount" >1</span>
                     <span class="plus">+</span>
                 </div>
 
-            </div>
+            </div> -->
+
+
 
         </div>
+        <div class="totalPrice">
+            <h4>You have added <span class="itemNumber">0</span> items to your Cart. <br>Total Price: <span
+                    class="total-price"><span>0</span></h3>
+        </div>
         <div class="btn">
-            <button class="close">CLOSE</button>
+            <button class="close">CLOSE CART</button>
+            <button class="reset">RESET CART</button>
             <button class="check">CHECK OUT</button>
         </div>
 
@@ -226,13 +240,42 @@
         </div>
     </footer>
 
-  
+
     <script type="module">
         import Cart from "./js/cartClass.js";
+        import { productList, shoppingCartList } from './js/dataStore.js';
+        import { handleCart } from './js/cart.js';
 
-        const productList = new Map();  // product list
+        // hamburger menu
+        document.addEventListener("DOMContentLoaded", function () {
+            const hamburgerMenu = document.querySelector('.hamburger-menu');
+            const burgerImg = document.getElementById('BurgerMenu')
+            // Use querySelectorAll to get all links you want to toggle
+            const navLinks = document.querySelectorAll('.third-column-first-row a');
 
-        const shoppingCartList = new Map(); // shopping cart list 
+            hamburgerMenu.addEventListener('click', function () {
+                // Loop through each link and toggle the class
+                navLinks.forEach(link => {
+                    link.classList.toggle('show-links');
+                });
+
+                if (burgerImg.getAttribute('src') === "./img/icons8-hamburger-menu-50.png") {
+                    // If currently hamburger icon, change to close icon
+                    burgerImg.src = "./img/icons8-close-50.png";
+                } else {
+                    // If currently close icon, change back to hamburger icon
+                    burgerImg.src = "./img/icons8-hamburger-menu-50.png";
+                }
+                    });
+
+          
+        });
+
+
+        // const productList = new Map();  // already created the map in datastore.js
+        // const shoppingCartList = new Map(); // already created the map in datastore.js
+
+
 
         // function to load product from json 
         const load = () => {
@@ -327,23 +370,33 @@
                     const productElement = document.createElement("div");
                     productElement.classList.add("product"); // add class name product
                     productElement.id = product.pid; //set up id =pid 
+                    //handle click event of add to cart 
+
 
                     productElement.innerHTML =
                         `<img src="${product.imagePath}" alt="${product.category}">
-                <h4>${product.name}</h4>
-                <h3>Price :&nbsp<span>${product.price}</span></h3>
-                <h3>Rating: <span>${product.rating}</span></h3>
-                <div class ="CartButton-button-container">
-                    <button class="CartButton">Add to Cart</button>
-                </div>`;
+                        <h4>${product.name}</h4>
+                        <h3>Price :&nbsp<span>${product.price}</span></h3>
+                        <h3>Rating: <span>${product.rating}</span></h3>
+                        <div class ="CartButton-button-container">
+                            <button class="CartButton">Add to Cart</button>
+                        </div>`;
 
                     // add products to html 
+
                     productDisplayContainer.append(productElement);
                 }
 
             }
             // add product result to html 
             productNumCounter.append(count);
+
+            // add click event to add to cart button 
+            for (let addtoCart of document.querySelectorAll(".CartButton")) {
+
+                addtoCart.addEventListener("click", handleCart);
+
+            }
         }
 
         const scrollContainer = document.querySelector(".gallery");
@@ -407,10 +460,10 @@
 
         searchInput.addEventListener("input", updateSuggestions);
 
-
     </script>
     <!-- external cart  js  -->
-    <script src="./js/cart.js"></script>
+    <script type="module" src="./js/cart.js"></script>
+
 </body>
 
 </html>

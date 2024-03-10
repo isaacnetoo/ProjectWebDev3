@@ -58,3 +58,14 @@
     font-size: 20px;
     line-height: 40px;
 }
+
+@media only screen and (max-width: 768px){
+
+    .select-container select{
+        font-size: 12px;
+    }
+    .select-container::after{
+        font-size: 17px;
+    }
+
+}
