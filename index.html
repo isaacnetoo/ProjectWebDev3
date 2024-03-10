@@ -168,7 +168,6 @@
 
         </div> -->
         <div class="product-display-container">
-
             <div class="product" id="ProductId">
                 <img src="./product_gallery/v-planet-mini-bites-kibbles.jpg" alt="dogFood">
                 <h4>V-planet Mini Bites Vegan Adult Dog Food by V-Dog</h4>
@@ -217,7 +216,6 @@
             <button class="reset">RESET CART</button>
             <button class="check">CHECK OUT</button>
         </div>
-
     </div>
 
 
@@ -238,6 +236,7 @@
                 <img src="./img/Pets-Canada-ENG-Logo-2.png.png" alt="pijac">
             </div>
         </div>
+        <button class="scrollToTopBtn" id="scrollToTopBtn">Top</button>
     </footer>
 
 
@@ -382,16 +381,12 @@
                             <button class="CartButton">Add to Cart</button>
                         </div>`;
 
-                    // add products to html 
-
                     productDisplayContainer.append(productElement);
                 }
 
             }
-            // add product result to html 
             productNumCounter.append(count);
 
-            // add click event to add to cart button 
             for (let addtoCart of document.querySelectorAll(".CartButton")) {
 
                 addtoCart.addEventListener("click", handleCart);
@@ -462,6 +457,33 @@ function updateSuggestions() {
 
 searchInput.addEventListener("input", updateSuggestions);
 
+document.addEventListener("DOMContentLoaded", function() {
+            var scrollToTopBtn = document.getElementById("scrollToTopBtn");
+            var rootElement = document.documentElement;
+
+            // When the user scrolls down the page, show the button
+            window.addEventListener("scroll", function() {
+                if (window.scrollY > 20) {
+                    scrollToTopBtn.style.display = "block";
+                } else {
+                    scrollToTopBtn.style.display = "none";
+                }
+            });
+
+            // When the user clicks on the button, scroll to the top of the document
+            scrollToTopBtn.addEventListener("click", function() {
+                scrollToTop();
+            });
+
+            // Function to smoothly scroll to the top of the document
+            function scrollToTop() {
+                // Scroll to top logic
+                rootElement.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+            }
+        });
 
     </script>
     <!-- external cart  js  -->
