@@ -423,42 +423,45 @@
         });
 
         const searchInput = document.getElementById("search-bar");
-        const suggestionsList = document.getElementById("suggestions");
+const suggestionsList = document.getElementById("suggestions");
 
-        
-        const suggestions = [
-            "Carna4-Handcrafted-Duck-Dog-Food",
-            "Carna4-Handcrafted-Chicken-Dog-Food",
-            "Companions-choice-probiotics-pets-pouch",
-            "Farmina-Duck-Broccoli-Asparagus-Quinoa-Neutered-Adult-Cat-Food-PixTeller",
-            "Farmina-Ancestral-Grain-Chicken-Pomegranate-Neutered-Adult-Cat-Food-",
-            "Oxbow-Organic-Bounty-Rabbit-Food",
-            "Oxbow-garden-select-food-young-rabbit",
-            "SquarePet-VFS-PowerCat-Turkey-Chicken-Cat-Food-11-lb-PixTeller",
-            "SquarePet-VFS-PowerCat-Herring-Salmon-Cat-Food-11-lb-PixTeller",
-            "Stoter-Farm-Adult-Rabbit-Food11",
-            "The-New-Zealand-Natural-Pet-Food-Co-Meow-Venison-Air-Dried-Cat-Food-PixTeller",
-            "V-planet Mini Bites Vegan Adult Dog Food by V-Dog"
-        ];
+const suggestions = [
+    "Carna4-Handcrafted-Duck-Dog-Food",
+    "Carna4-Handcrafted-Chicken-Dog-Food",
+    "Companions-choice-probiotics-pets-pouch",
+    "Farmina-Duck-Broccoli-Asparagus-Quinoa-Neutered-Adult-Cat-Food-PixTeller",
+    "Farmina-Ancestral-Grain-Chicken-Pomegranate-Neutered-Adult-Cat-Food-",
+    "Oxbow-Organic-Bounty-Rabbit-Food",
+    "Oxbow-garden-select-food-young-rabbit",
+    "SquarePet-VFS-PowerCat-Turkey-Chicken-Cat-Food-11-lb-PixTeller",
+    "SquarePet-VFS-PowerCat-Herring-Salmon-Cat-Food-11-lb-PixTeller",
+    "Stoter-Farm-Adult-Rabbit-Food11",
+    "The-New-Zealand-Natural-Pet-Food-Co-Meow-Venison-Air-Dried-Cat-Food-PixTeller",
+    "V-planet Mini Bites Vegan Adult Dog Food by V-Dog"
+];
 
-        
-        function updateSuggestions() {
-            const userInput = searchInput.value.toLowerCase();
-            const filteredSuggestions = suggestions.filter(suggestion =>
-                suggestion.toLowerCase().startsWith(userInput)
-            );
+function updateSuggestions() {
+    const userInput = searchInput.value.trim().toLowerCase(); // Trim the user input to remove leading/trailing whitespace
+    const filteredSuggestions = suggestions.filter(suggestion =>
+        suggestion.toLowerCase().startsWith(userInput)
+    );
 
-            
-            suggestionsList.innerHTML = "";
+    suggestionsList.innerHTML = "";
 
-            filteredSuggestions.forEach(suggestion => {
-                const li = document.createElement("li");
-                li.textContent = suggestion;
-                suggestionsList.appendChild(li);
-            });
-        }
+    if (userInput === "") {
+        // Clear the suggestions list if user input is empty
+        return;
+    }
 
-        searchInput.addEventListener("input", updateSuggestions);
+    filteredSuggestions.forEach(suggestion => {
+        const li = document.createElement("li");
+        li.textContent = suggestion;
+        suggestionsList.appendChild(li);
+    });
+}
+
+searchInput.addEventListener("input", updateSuggestions);
+
 
     </script>
     <!-- external cart  js  -->
