@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="./css/productDisplay.css">
     <link rel="stylesheet" href="./css/footer.css">
     <link rel="stylesheet" href="./css/cart.css">
+    <link rel="stylesheet" href="./css/imageslide.css">
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;500;700&display=swap"
         rel="stylesheet">
@@ -111,6 +112,38 @@
             </div>
         </div>
     </header>
+
+    <div class="gallery-wrap">
+        <img src="./img/3604564.png" id="BackBtn">
+        <div class="gallery">
+            <div class="gallery-container">
+                <span><img src="./product_gallery/v-planet-mini-bites-kibbles.jpg"></span>
+                <span><img src="./product_gallery/Carna4-Handcrafted-Chicken-Dog-Food-.png"></span>
+                <span><img src="./product_gallery/Carna4-Handcrafted-Duck-Dog-Food-.png"></span>
+            </div>
+            <div class="gallery-container">
+                <span><img src="./product_gallery/Companions-choice-probiotics-pets-pouch.png"></span>
+                <span><img
+                        src="./product_gallery/Farmina-Ancestral-Grain-Chicken-Pomegranate-Neutered-Adult-Cat-Food-PixTeller.png"></span>
+                <span><img
+                        src="./product_gallery/Farmina-Duck-Broccoli-Asparagus-Quinoa-Neutered-Adult-Cat-Food-PixTeller.png"></span>
+            </div>
+            <div class="gallery-container">
+                <span><img src="product_gallery/Oxbow-garden-select-food-young-rabbit.png"></span>
+                <span><img src="product_gallery/Oxbow-Organic-Bounty-Rabbit-Food-.png"></span>
+                <span><img
+                        src="product_gallery/SquarePet-VFS-PowerCat-Herring-Salmon-Cat-Food-11-lb-PixTeller.png"></span>
+            </div>
+            <div class="gallery-container">
+                <span><img
+                        src="./product_gallery/SquarePet-VFS-PowerCat-Turkey-Chicken-Cat-Food-11-lb-PixTeller.png"></span>
+                <span><img src="./product_gallery/Stoter-Farm-Adult-Rabbit-Food11-.png"></span>
+                <span><img
+                        src="./product_gallery/The-New-Zealand-Natural-Pet-Food-Co-Meow-Venison-Air-Dried-Cat-Food-PixTeller.png"></span>
+            </div>
+        </div>
+        <img src="./img/1723827.png" id="NextBtn">
+    </div>
 
 
     <section class="customize-filter">
@@ -237,9 +270,9 @@
                     // If currently close icon, change back to hamburger icon
                     burgerImg.src = "./img/icons8-hamburger-menu-50.png";
                 }
-                    });
+            });
 
-          
+
         });
 
 
@@ -369,6 +402,31 @@
 
             }
         }
+
+        const scrollContainer = document.querySelector(".gallery");
+        const slider = document.querySelector(".slider");
+        const backBtn = document.getElementById("BackBtn");
+        const nextBtn = document.getElementById("NextBtn");
+
+        backBtn.addEventListener("click", () => {
+            scrollContainer.scrollLeft -= slider.offsetWidth;
+        });
+
+        nextBtn.addEventListener("click", () => {
+            scrollContainer.scrollLeft += slider.offsetWidth;
+        });
+
+        nextBtn.addEventListener("click", () => {
+            scrollContainer.style.scrollBehavior = "smooth";
+            //  Each slide is the full width of the container
+            scrollContainer.scrollLeft += scrollContainer.offsetWidth;
+        });
+
+        backBtn.addEventListener("click", () => {
+            scrollContainer.style.scrollBehavior = "smooth";
+            // Each slide is the full width of the container
+            scrollContainer.scrollLeft -= scrollContainer.offsetWidth;
+        });
 
     </script>
     <!-- external cart  js  -->
