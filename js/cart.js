@@ -91,6 +91,7 @@ export function handleCart(e) {
     displayCart();
 }
 
+// function to load the localstorage data and populate into the shopping Cart List 
 function loadCartFromLocalStorage() {
     const storedCartData = localStorage.getItem('shoppingCart');
     if (storedCartData) {
@@ -208,7 +209,7 @@ export function displayCart() {
     } else {
 
         console.log("No cart data found in localStorage.");
-        
+
     }
 
 

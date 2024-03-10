@@ -14,13 +14,15 @@
     <link rel="stylesheet" href="./css/productDisplay.css">
     <link rel="stylesheet" href="./css/footer.css">
     <link rel="stylesheet" href="./css/cart.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;500;700&display=swap"
+        rel="stylesheet">
 
 
 </head>
 
 <body>
-  
+
     <header>
         <div class="header-container">
             <div class="first-column">
@@ -61,6 +63,10 @@
             </div>
 
             <div class="third-column">
+
+                <button class="hamburger-menu" aria-label="Open menu">
+                    <img src="./img/icons8-hamburger-menu-50.png" alt="Menu">
+                </button>
                 <div class="third-column-first-row">
                     <a href="./index.html">Home</a>
                     <a href="https://www.canadianpetconnection.ca/get-to-know-us/">About Us</a>
@@ -70,9 +76,9 @@
                         <img src="./img/icons8-add-shopping-cart-50.png" alt="Cart Icon">
                         <span class="cart-count">0</span> <!-- Assuming there are 3 items in the cart -->
                     </div>
-
-
                 </div>
+
+
 
                 <div class="search-container">
                     <input type="text" placeholder="What are you looking for today?" id="search-bar">
@@ -102,7 +108,6 @@
                 <a href="">Gift Cards</a>
                 <a href="">Best Sellers</a>
                 <a href="">Bundles</a>
-                <a href="">What's New</a>
             </div>
         </div>
     </header>
@@ -149,7 +154,8 @@
     </section>
 
     <div class="cartTab">
-        <h1>Shopping Cart <img src="./img/icons8-add-shopping-cart-50.png" alt="Icon" style="width: 25px; height: 25px;" id="firstCartIcon"></h1>
+        <h1>Shopping Cart <img src="./img/icons8-add-shopping-cart-50.png" alt="Icon" style="width: 25px; height: 25px;"
+                id="firstCartIcon"></h1>
         <div class="listCart">
             <!-- product display in cart template  -->
             <!-- <div class="item">
@@ -169,11 +175,14 @@
                 </div>
 
             </div> -->
-            
-            
+
+
 
         </div>
-        <div class="totalPrice"><h4>You have added <span class="itemNumber">0</span> items to your Cart. <br>Total Price: <span class="total-price"><span>0</span></h3></div>
+        <div class="totalPrice">
+            <h4>You have added <span class="itemNumber">0</span> items to your Cart. <br>Total Price: <span
+                    class="total-price"><span>0</span></h3>
+        </div>
         <div class="btn">
             <button class="close">CLOSE CART</button>
             <button class="reset">RESET CART</button>
@@ -202,15 +211,31 @@
         </div>
     </footer>
 
-  
+
     <script type="module">
         import Cart from "./js/cartClass.js";
         import { productList, shoppingCartList } from './js/dataStore.js';
-        import {handleCart} from './js/cart.js';
+        import { handleCart } from './js/cart.js';
+
+        // hamburger menu
+        document.addEventListener("DOMContentLoaded", function () {
+            const hamburgerMenu = document.querySelector('.hamburger-menu');
+            // Use querySelectorAll to get all links you want to toggle
+            const navLinks = document.querySelectorAll('.third-column-first-row a');
+
+            hamburgerMenu.addEventListener('click', function () {
+                // Loop through each link and toggle the class
+                navLinks.forEach(link => {
+                    link.classList.toggle('show-links');
+                });
+            });
+        });
+
+
         // const productList = new Map();  // already created the map in datastore.js
         // const shoppingCartList = new Map(); // already created the map in datastore.js
 
-  
+
 
         // function to load product from json 
         const load = () => {
@@ -261,7 +286,7 @@
             displayProduct(selectedCategory); // Filter and display products
         });
 
- 
+
         // default parameter is all 
         const displayProduct = (category = 'all', searchQuery = '') => {
 
@@ -306,7 +331,7 @@
                     productElement.classList.add("product"); // add class name product
                     productElement.id = product.pid; //set up id =pid 
                     //handle click event of add to cart 
-                    
+
 
                     productElement.innerHTML =
                         `<img src="${product.imagePath}" alt="${product.category}">
@@ -318,7 +343,7 @@
                         </div>`;
 
                     // add products to html 
-                 
+
                     productDisplayContainer.append(productElement);
                 }
 
@@ -327,10 +352,10 @@
             productNumCounter.append(count);
 
             // add click event to add to cart button 
-            for(let addtoCart of document.querySelectorAll(".CartButton")){
-              
-                addtoCart.addEventListener("click",handleCart);
-     
+            for (let addtoCart of document.querySelectorAll(".CartButton")) {
+
+                addtoCart.addEventListener("click", handleCart);
+
             }
         }
 
