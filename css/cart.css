@@ -1,0 +1,95 @@
+.cartTab{
+    width:400px;
+    background-color:#353432;
+    color:bisque;
+    position:fixed;
+    /* top:0;
+    right:0;
+    bottom:0; */
+    /* inset: top right bottom left; */
+    display:grid;
+    /*initialize set up disappear so it on the right side of screen, we can't see it*/
+    top: 0;
+    right: 0;
+    bottom: 0;
+    transform: translateX(100%); /* Start off-screen */
+    grid-template-rows: 70px 1fr 70px;
+    transition: transform 0.5s ease; /* Smooth transition for transform */
+}
+
+/*display the cart back to the screen*/
+body.showCart .cartTab{
+    transform: translateX(0); /* Slide in */
+}
+
+.cartTab h1{
+    padding:20px;
+    margin:0;
+    font-weight:300;
+}
+
+.cartTab .btn{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+}
+
+.cartTab .btn button{
+    background-color:yellowgreen;
+    border:none;
+    font-family: 'Roboto', sans-serif;
+
+    font-weight:500;
+    cursor:pointer;
+}
+
+.cartTab .btn .close{
+    background-color: #eee;
+}
+
+.cartTab .listCart .item img{
+    width:100%;
+}
+
+/* img name price in a row */
+.cartTab .listCart .item{
+    color:whitesmoke;
+    display:grid;
+    grid-template-columns: 70px 100px 50px 1fr;
+    gap:8px;
+    text-align: center;
+    align-items: center;
+    padding:1rem 1rem;
+}
+/* 
+icon for plus and minus amount */
+.listCart .amount span{
+    display:inline-block;
+    width:25px;
+    height:25px;
+    background-color: #eee;
+    color:#555;
+    border-radius: 50%;
+    cursor:pointer;
+
+}
+
+/*check what does this target for */
+.listCart .quanity span:nth-child(2){
+    background-color: transparent;
+    color:#eee;
+}
+
+
+/*the even item will have #eee1 color*/
+.listCart .item:nth-child(even){
+    background-color:#eee1;
+}
+
+/*once the item over the frame, it will allow the user to scroll down*/
+/*within this setup the check out and close will always at the bottom*/
+.listCart{
+    overflow:auto
+}
+
+.listCart::-webkit-scrollbar{
+    width:0;

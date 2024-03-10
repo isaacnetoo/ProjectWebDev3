@@ -5,16 +5,23 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Find & buy the best bet products in Canada online</title>
+    <title>Find & buy the best bet products in Canada online </title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="./css/body.css">
     <link rel="stylesheet" href="./css/header.css">
+    <link rel="stylesheet" href="./css/filter.css">
     <link rel="stylesheet" href="./css/productDisplay.css">
     <link rel="stylesheet" href="./css/footer.css">
+    <link rel="stylesheet" href="./css/imageslide.css">
+    <link rel="stylesheet" href="./css/cart.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+
 </head>
 
 <body>
+  
     <header>
         <div class="header-container">
             <div class="first-column">
@@ -62,14 +69,15 @@
                     <a href="https://www.canadianpetconnection.ca/my-cart/">MyPetCart</a>
                     <div class="cart-widget">
                         <img src="./img/icons8-add-shopping-cart-50.png" alt="Cart Icon">
-                        <span class="cart-count">3</span> <!-- Assuming there are 3 items in the cart -->
+                        <span class="cart-count">0</span> <!-- Assuming there are 3 items in the cart -->
                     </div>
-                    
-                  
+
+
                 </div>
 
                 <div class="search-container">
                     <input type="text" placeholder="What are you looking for today?" id="search-bar">
+                    <ul id="suggestions"></ul>
                 </div>
 
                 <div class="third-column-third-row">
@@ -101,14 +109,60 @@
         </div>
     </header>
 
-    
+    <div class="gallery-wrap">
+        <img src="./img/3604564.png" id="BackBtn">
+        <div class="gallery">
+            <div>
+                <span><img src="product_gallery/v-planet-mini-bites-kibbles.jpg" ></span>
+                <span><img src="product_gallery/Carna4-Handcrafted-Chicken-Dog-Food-.png" ></span>
+                <span><img src="product_gallery/Carna4-Handcrafted-Duck-Dog-Food-.png" ></span>
+            </div>
+            <div>
+                <span><img src="product_gallery/Companions-choice-probiotics-pets-pouch.png" ></span>
+                <span><img src="product_gallery/Farmina-Ancestral-Grain-Chicken-Pomegranate-Neutered-Adult-Cat-Food-PixTeller.png" ></span>
+                <span><img src="product_gallery/Farmina-Duck-Broccoli-Asparagus-Quinoa-Neutered-Adult-Cat-Food-PixTeller.png" ></span>
+            </div>
+            <div>
+                <span><img src="product_gallery/Oxbow-garden-select-food-young-rabbit.png" ></span>
+                <span><img src="product_gallery/Oxbow-Organic-Bounty-Rabbit-Food-.png" ></span>
+                <span><img src="product_gallery/SquarePet-VFS-PowerCat-Herring-Salmon-Cat-Food-11-lb-PixTeller.png" ></span>
+            </div>
+            <div>
+                <span><img src="product_gallery/SquarePet-VFS-PowerCat-Turkey-Chicken-Cat-Food-11-lb-PixTeller.png" ></span>
+                <span><img src="product_gallery/Stoter-Farm-Adult-Rabbit-Food11-.png" ></span>
+                <span><img src="product_gallery/The-New-Zealand-Natural-Pet-Food-Co-Meow-Venison-Air-Dried-Cat-Food-PixTeller.png" ></span>
+            </div>
+        </div>
+        <img src="./img/1723827.png" id="NextBtn">
+    </div>
+
+
+    <section class="customize-filter">
+        <div class="filter-container">
+            <div class="text-result-container">
+                <h3>Found <strong id="productCounter"></strong> matching results for your search.</h3>
+            </div>
+            <div class="select-container">
+                <select id="categoryFilter">
+                    <option value="all">All&nbsp Products</option>
+                    <option value="dogFood">Dog&nbsp Products</option>
+                    <option value="catFood">Cat&nbsp Products</option>
+                    <option value="rabbitFood">Rabbit&nbsp Products</option>
+                    <option value="price">Sorted by Price </option>
+                    <option value="rate">Sorted by Rate </option>
+                </select>
+                <div />
+            </div>
+    </section>
+
+
 
 
     <section class="product-display">
         <!-- <div class ="sorted">
 
         </div> -->
-        <div class ="product-display-container">
+        <div class="product-display-container">
 
             <div class="product" id="ProductId">
                 <img src="./product_gallery/v-planet-mini-bites-kibbles.jpg" alt="dogFood">
@@ -118,12 +172,39 @@
                 <div class="CartButton-button-container">
                     <button class="CartButton">add to Cart</button>
                 </div>
-            </div> 
+            </div>
         </div>
 
-        
     </section>
 
+    <div class="cartTab">
+        <h1>Shopping Cart <img src="./img/icons8-add-shopping-cart-50.png" alt="Icon" style="width: 25px; height: 25px;"></h1>
+        <div class="listCart">
+            <div class="item">
+                <div class="image">
+                    <img src="./product_gallery/v-planet-mini-bites-kibbles.jpg" alt="items">
+                </div>
+                <div class="name">
+                    NAME
+                </div>
+                <div class="totalPrice">
+                    $200
+                </div>
+                <div class="amount">
+                    <span class="minus">-</span>
+                    <span>1</span>
+                    <span class="plus">+</span>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="btn">
+            <button class="close">CLOSE</button>
+            <button class="check">CHECK OUT</button>
+        </div>
+
+    </div>
 
 
 
@@ -131,7 +212,7 @@
     <footer>
         <div class="footer-container">
             <div class="footer-text-container">
-                 <p>© 2024 PawPalsMarket Connection Inc. All Rights Reserved</p>  
+                <p>© 2024 PawPalsMarket Connection Inc. All Rights Reserved</p>
             </div>
 
             <div class="footer-image-container">
@@ -140,71 +221,196 @@
                 </a>
             </div>
             <div class="footer-image-container">
-                <img src="./img/Pets-Canada-ENG-Logo-2.png.png" alt="pijac">  
+                <img src="./img/Pets-Canada-ENG-Logo-2.png.png" alt="pijac">
             </div>
         </div>
     </footer>
 
-
+  
     <script type="module">
-        import Cart from "./js/shoppingCart.js";
-        
+        import Cart from "./js/cartClass.js";
+
         const productList = new Map();  // product list
 
-        const shoppingCartList= new Map(); // shopping cart list 
+        const shoppingCartList = new Map(); // shopping cart list 
 
         // function to load product from json 
         const load = () => {
-        const xHttp = new XMLHttpRequest();
+            const xHttp = new XMLHttpRequest();
 
-        xHttp.onload = () => {
-            // Parse the file data as JSON
-            let tmpData = JSON.parse(xHttp.responseText);
+            xHttp.onload = () => {
+                // Parse the file data as JSON
+                let tmpData = JSON.parse(xHttp.responseText);
 
-            // Iterate over the data
-            for (let data of tmpData) {
-                // Set key-value pairs in the productList map
-                productList.set(data.pid, data);
-             
+                // Iterate over the data
+                for (let data of tmpData) {
+                    // Set key-value pairs in the productList map
+                    productList.set(data.pid, data);
+
+                }
+                //literate the product list
+                for (let value of productList.values()) {
+                    console.log(value);
+
+                    // After loading and populating productList, display the products
+                    displayProduct(); // Call the function to display products
+                }
+
+            };
+            xHttp.open("GET", "./data/mock.data.json"); // Open the request
+            xHttp.send(); // Send the request
+        }
+        load();
+
+        // search bar 
+        const searchBar = document.getElementById('search-bar');
+
+        searchBar.addEventListener('input', e => {
+            // keep tracking user input 
+            const inputValue = e.target.value.toLowerCase();
+            // console.log(inputValue);
+            displayProduct('all', inputValue)
+        })
+
+
+
+        // filter and product display based on user option 
+
+        const categoryFilter = document.getElementById('categoryFilter');
+        categoryFilter.addEventListener('change', e => {
+            const selectedCategory = e.target.value; // Correctly get the selected option
+            // console.log(selectedCategory); 
+            displayProduct(selectedCategory); // Filter and display products
+        });
+
+
+        // default parameter is all 
+        const displayProduct = (category = 'all', searchQuery = '') => {
+
+            const productDisplayContainer = document.querySelector(".product-display-container");
+            productDisplayContainer.innerHTML = '';
+
+            const productNumCounter = document.getElementById("productCounter");
+            productNumCounter.innerHTML = '';
+            //initially convert productList map to an array for sorting and filtering
+            let productsArray = Array.from(productList.values());
+
+            //so now in this array, there are several product object, product.name = product name 
+            // the way to iterate the products array 
+            // for (let i = 0; i < productsArray.length; i++) {
+            //     const product = productsArray[i];
+            // }
+
+
+            //logic sort by price from low to high
+            if (category === 'price') {
+                productsArray.sort((a, b) => a.price - b.price);
+
             }
-            //literate the product list
-            for (let value of productList.values()){
-            console.log(value);
 
-              // After loading and populating productList, display the products
-            displayProduct(); // Call the function to display products
+            // logic sort by rating form high to low 
+            if (category === 'rate') {
+                productsArray.sort((a, b) => b.rating - a.rating);
+            }
+
+            //counter to display product result 
+            let count = 0;
+
+            for (let product of productsArray) {
+                // Matching the user input in the search bar to product name in lowercase 
+                const matchSearchQuery = product.name.toLowerCase().includes(searchQuery);
+
+                console.log(matchSearchQuery);
+                //categroy =  dogFood or catFood or rabbitFood or price or rate / all = display all product
+                if ((category === 'all' || product.category === category || category === 'price' || category === 'rate') && matchSearchQuery) {
+                    count++;
+                    const productElement = document.createElement("div");
+                    productElement.classList.add("product"); // add class name product
+                    productElement.id = product.pid; //set up id =pid 
+
+                    productElement.innerHTML =
+                        `<img src="${product.imagePath}" alt="${product.category}">
+                <h4>${product.name}</h4>
+                <h3>Price :&nbsp<span>${product.price}</span></h3>
+                <h3>Rating: <span>${product.rating}</span></h3>
+                <div class ="CartButton-button-container">
+                    <button class="CartButton">Add to Cart</button>
+                </div>`;
+
+                    // add products to html 
+                    productDisplayContainer.append(productElement);
+                }
+
+            }
+            // add product result to html 
+            productNumCounter.append(count);
         }
+
+        const scrollContainer = document.querySelector(".gallery");
+        const slider = document.querySelector(".slider");
+        const backBtn = document.getElementById("BackBtn");
+        const nextBtn = document.getElementById("NextBtn");
+
+        backBtn.addEventListener("click", () => {
+            scrollContainer.scrollLeft -= slider.offsetWidth;
+        });
+
+        nextBtn.addEventListener("click", () => {
+            scrollContainer.scrollLeft += slider.offsetWidth;
+        });
+
+        NextBtn.addEventListener("click", ()=>{
+            scrollContainer.style.scrollBehavior = "smooth";
+            scrollContainer.scrollLeft += 900;
+        });
+
+        BackBtn.addEventListener("click", ()=>{
+            scrollContainer.style.scrollBehavior = "smooth";
+            scrollContainer.scrollLeft -= 900;
+        });
+
+        const searchInput = document.getElementById("search-bar");
+        const suggestionsList = document.getElementById("suggestions");
+
+        
+        const suggestions = [
+            "Carna4-Handcrafted-Duck-Dog-Food",
+            "Carna4-Handcrafted-Chicken-Dog-Food",
+            "Companions-choice-probiotics-pets-pouch",
+            "Farmina-Duck-Broccoli-Asparagus-Quinoa-Neutered-Adult-Cat-Food-PixTeller",
+            "Farmina-Ancestral-Grain-Chicken-Pomegranate-Neutered-Adult-Cat-Food-",
+            "Oxbow-Organic-Bounty-Rabbit-Food",
+            "Oxbow-garden-select-food-young-rabbit",
+            "SquarePet-VFS-PowerCat-Turkey-Chicken-Cat-Food-11-lb-PixTeller",
+            "SquarePet-VFS-PowerCat-Herring-Salmon-Cat-Food-11-lb-PixTeller",
+            "Stoter-Farm-Adult-Rabbit-Food11",
+            "The-New-Zealand-Natural-Pet-Food-Co-Meow-Venison-Air-Dried-Cat-Food-PixTeller",
+            "V-planet Mini Bites Vegan Adult Dog Food by V-Dog"
+        ];
+
+        
+        function updateSuggestions() {
+            const userInput = searchInput.value.toLowerCase();
+            const filteredSuggestions = suggestions.filter(suggestion =>
+                suggestion.toLowerCase().startsWith(userInput)
+            );
+
             
-        };
-        xHttp.open("GET", "./data/mock.data.json"); // Open the request
-        xHttp.send(); // Send the request
-    }
-    load();
+            suggestionsList.innerHTML = "";
 
-    const displayProduct=()=>{
-        const productDisplayContainer = document.querySelector(".product-display-container");
-        productDisplayContainer.innerHTML='';
-
-        for (let product of productList.values()){
-            const productElement = document.createElement("div");
-            productElement.classList.add("product"); // add class name product
-            productElement.id= product.pid; //set up id =pid 
-
-            productElement.innerHTML= 
-            `<img src="${product.imagePath}" alt="${product.category}">
-            <h4>${product.name}</h4>
-            <h3>Price :&nbsp<span>${product.price}</span></h3>
-            <h3>Rating: <span>${product.rating}</span></h3>
-            <div class ="CartButton-button-container">
-                <button class="CartButton">Add to Cart</button>
-            </div>`;
-
-            productDisplayContainer.append(productElement);
-
+            filteredSuggestions.forEach(suggestion => {
+                const li = document.createElement("li");
+                li.textContent = suggestion;
+                suggestionsList.appendChild(li);
+            });
         }
-    }
+
+        searchInput.addEventListener("input", updateSuggestions);
+
 
     </script>
+    <!-- external cart  js  -->
+    <script src="./js/cart.js"></script>
 </body>
 
 </html>
