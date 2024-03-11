@@ -242,6 +242,7 @@
                 <img src="./img/Pets-Canada-ENG-Logo-2.png.png" alt="pijac">
             </div>
         </div>
+        <button class="scrollToTopBtn" id="scrollToTopBtn">Top</button>
     </footer>
 
 
@@ -426,6 +427,34 @@
             scrollContainer.style.scrollBehavior = "smooth";
             // Each slide is the full width of the container
             scrollContainer.scrollLeft -= scrollContainer.offsetWidth;
+        });
+
+        document.addEventListener("DOMContentLoaded", function() {
+            var scrollToTopBtn = document.getElementById("scrollToTopBtn");
+            var rootElement = document.documentElement;
+
+            // When the user scrolls down the page, show the button
+            window.addEventListener("scroll", function() {
+                if (window.scrollY > 20) {
+                    scrollToTopBtn.style.display = "block";
+                } else {
+                    scrollToTopBtn.style.display = "none";
+                }
+            });
+
+            // When the user clicks on the button, scroll to the top of the document
+            scrollToTopBtn.addEventListener("click", function() {
+                scrollToTop();
+            });
+
+            // Function to smoothly scroll to the top of the document
+            function scrollToTop() {
+                // Scroll to top logic
+                rootElement.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+            }
         });
 
     </script>
