@@ -83,6 +83,7 @@
 
                 <div class="search-container">
                     <input type="text" placeholder="What are you looking for today?" id="search-bar">
+                    <ul id="suggestions"></ul>
                 </div>
 
                 <div class="third-column-third-row">
@@ -242,6 +243,7 @@
                 <img src="./img/Pets-Canada-ENG-Logo-2.png.png" alt="pijac">
             </div>
         </div>
+        <!-- move top button -->
         <button class="scrollToTopBtn" id="scrollToTopBtn">Top</button>
     </footer>
 
@@ -320,7 +322,72 @@
             displayProduct('all', inputValue)
         })
 
+        const searchInput = document.getElementById("search-bar");
+        const suggestionsList = document.getElementById("suggestions");
 
+        const suggestions = [
+            "Carna4-Handcrafted-Duck-Dog-Food",
+            "Carna4-Handcrafted-Chicken-Dog-Food",
+            "Companions-choice-probiotics-pets-pouch",
+            "Farmina-Duck-Broccoli-Asparagus-Quinoa-Neutered-Adult-Cat-Food-PixTeller",
+            "Farmina-Ancestral-Grain-Chicken-Pomegranate-Neutered-Adult-Cat-Food-",
+            "Oxbow-Organic-Bounty-Rabbit-Food",
+            "Oxbow-garden-select-food-young-rabbit",
+            "SquarePet-VFS-PowerCat-Turkey-Chicken-Cat-Food-11-lb-PixTeller",
+            "SquarePet-VFS-PowerCat-Herring-Salmon-Cat-Food-11-lb-PixTeller",
+            "Stoter-Farm-Adult-Rabbit-Food11",
+            "The-New-Zealand-Natural-Pet-Food-Co-Meow-Venison-Air-Dried-Cat-Food-PixTeller",
+            "V-planet Mini Bites Vegan Adult Dog Food by V-Dog"
+        ];
+
+        function updateSuggestions() {
+            const userInput = searchInput.value.trim().toLowerCase(); // Trim the user input to remove leading/trailing whitespace
+            const filteredSuggestions = suggestions.filter(suggestion =>
+                suggestion.toLowerCase().startsWith(userInput)
+            );
+
+            suggestionsList.innerHTML = "";
+
+            if (userInput === "") {
+                // Clear the suggestions list if user input is empty
+                return;
+            }
+
+            filteredSuggestions.forEach(suggestion => {
+            const li = document.createElement("li");
+            li.textContent = suggestion;
+            
+            //add click event to suggestion list
+            li.addEventListener('click', () => {
+                // Set the input field value to the suggestion text
+                searchInput.value = suggestion;
+                
+                // Clear the suggestions list
+                suggestionsList.innerHTML = '';
+                
+                // Call displayProduct to find the match product
+                displayProduct('all', suggestion.toLowerCase());
+
+        
+            });
+            suggestionsList.appendChild(li);
+        });
+
+
+        }
+
+        searchInput.addEventListener("input", updateSuggestions);
+
+        function displaySelectedProduct(productName) {
+            const productNameLowerCase = productName.toLowerCase();
+            console.log("find product " + productName);
+
+            displayProduct('all', productNameLowerCase); // Adjust according to your actual implementation
+
+            // If necessary, clear the search input and suggestions list after selecting a product
+            searchInput.value = '';
+            suggestionsList.innerHTML = '';
+        }
 
         // filter and product display based on user option 
 
@@ -363,12 +430,12 @@
 
             //counter to display product result 
             let count = 0;
-
+            console.log("this is searchQuery" + searchQuery);
             for (let product of productsArray) {
                 // Matching the user input in the search bar to product name in lowercase 
                 const matchSearchQuery = product.name.toLowerCase().includes(searchQuery);
 
-                console.log(matchSearchQuery);
+                console.log("this is matchSearchQuery " + matchSearchQuery);
                 //categroy =  dogFood or catFood or rabbitFood or price or rate / all = display all product
                 if ((category === 'all' || product.category === category || category === 'price' || category === 'rate') && matchSearchQuery) {
                     count++;
@@ -404,6 +471,7 @@
             }
         }
 
+        // js to implement slide animation feature 
         const scrollContainer = document.querySelector(".gallery");
         const slider = document.querySelector(".slider");
         const backBtn = document.getElementById("BackBtn");
@@ -429,12 +497,13 @@
             scrollContainer.scrollLeft -= scrollContainer.offsetWidth;
         });
 
-        document.addEventListener("DOMContentLoaded", function() {
+        // js to implement back to top feature 
+        document.addEventListener("DOMContentLoaded", function () {
             var scrollToTopBtn = document.getElementById("scrollToTopBtn");
             var rootElement = document.documentElement;
 
             // When the user scrolls down the page, show the button
-            window.addEventListener("scroll", function() {
+            window.addEventListener("scroll", function () {
                 if (window.scrollY > 20) {
                     scrollToTopBtn.style.display = "block";
                 } else {
@@ -443,7 +512,7 @@
             });
 
             // When the user clicks on the button, scroll to the top of the document
-            scrollToTopBtn.addEventListener("click", function() {
+            scrollToTopBtn.addEventListener("click", function () {
                 scrollToTop();
             });
 
