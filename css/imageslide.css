@@ -66,5 +66,6 @@ body{
 @media only screen and (max-width: 768px){
     #BackBtn, #NextBtn{
        margin:20px;
+       width:25px;
     }
 }
