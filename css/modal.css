@@ -2,7 +2,6 @@
     display: none; 
     position: fixed; 
     z-index: 1; 
-    padding:15%;
     left: 0;
     top: 0;
     width: 100%; 
@@ -13,68 +12,27 @@
 
 .modal-content {
     background-color: #fefefe;
-   padding: 20%;
+    margin: auto;
+    padding: 20px;
     border: 1px solid #888;
-    width: 80%;
+    width: 60%; 
+    max-width: 500px; 
     box-sizing: border-box; 
-    position: relative; 
-    top: 50%; 
-    left: 50%; 
-    transform: translate(-50%, -50%); 
+    position: relative;
+    top: 50%;
+    left: 20%;
+    transform: translate(-50%, -50%);
 }
-
-
-.modalbody {
-    display: flex;
-}
-
-.modaImg {
-    padding: 10%;
-}
-
-.close {
-    position: absolute;
-    color: #333;
-    cursor: pointer;
-    top: 5%;
-    right: 5%;
-    font-size: 20px;
-    padding: 10px;
-}
-
-
-#caption {
-    margin: 30px 20px;
-    font-size: 25px;
+#caption{
+    font-size:20px;
     font-family: 'Roboto', sans-serif;
     font-weight: bold;
 }
-@media (max-width: 768px) {
-   
 
+@media (max-width: 600px) {
 
-    .modalbody {
-        flex-direction: column;
-        align-items: center;
-    }
-    .modal-content{
-        margin:10% auto;
-        width:90%;
-        overflow:hidden;
-    }
-    .modaImg, #caption {
-       width:auto;
-       max-width:100%;
-        height:auto;
-        max-height:70vh;
-        padding:5%; 
-        object-fit:contain;
-    }
-    .modaImg {
-        order: 1; 
-    }
-    #caption {
-        order: 2;
-        text-align: center; 
+    .modal-content {
+        width: 80%;
+        overflow-x:hidden;
     }
 }
