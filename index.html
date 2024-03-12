@@ -195,7 +195,8 @@
            <div id="caption" ></div></div></div>
         </div>
     </div>
-    </section>
+
+
 
     <div class="cartTab">
         <h1>Shopping Cart <img src="./img/icons8-add-shopping-cart-50.png" alt="Icon" style="width: 25px; height: 25px;"
@@ -232,6 +233,8 @@
             <button class="reset">RESET CART</button>
             <button class="check">CHECK OUT</button>
         </div>
+
+
 
     </div>
 
@@ -364,24 +367,24 @@
             }
 
             filteredSuggestions.forEach(suggestion => {
-            const li = document.createElement("li");
-            li.textContent = suggestion;
-            
-            //add click event to suggestion list
-            li.addEventListener('click', () => {
-                // Set the input field value to the suggestion text
-                searchInput.value = suggestion;
-                
-                // Clear the suggestions list
-                suggestionsList.innerHTML = '';
-                
-                // Call displayProduct to find the match product
-                displayProduct('all', suggestion.toLowerCase());
+                const li = document.createElement("li");
+                li.textContent = suggestion;
 
-        
+                //add click event to suggestion list
+                li.addEventListener('click', () => {
+                    // Set the input field value to the suggestion text
+                    searchInput.value = suggestion;
+
+                    // Clear the suggestions list
+                    suggestionsList.innerHTML = '';
+
+                    // Call displayProduct to find the match product
+                    displayProduct('all', suggestion.toLowerCase());
+
+
+                });
+                suggestionsList.appendChild(li);
             });
-            suggestionsList.appendChild(li);
-        });
 
 
         }
@@ -481,6 +484,7 @@
             }
         }
 
+
         // js to implement slide animation feature 
         const scrollContainer = document.querySelector(".gallery");
         const slider = document.querySelector(".slider");
@@ -536,7 +540,10 @@
             }
         });
 
-        var modal = document.getElementById('myModal');
+        //modal
+        document.addEventListener('DOMContentLoaded', function() {
+  
+    var modal = document.getElementById('myModal');
     var modalImg = document.getElementById('imgm');
     var caption = document.getElementById('caption');
     var span = document.getElementsByClassName('close')[0]; 
@@ -567,9 +574,14 @@
     }
 
 });
+
+     
+
+
     </script>
     <!-- external cart  js  -->
     <script type="module" src="./js/cart.js"></script>
+
 
 </body>
 
