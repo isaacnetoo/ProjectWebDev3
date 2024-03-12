@@ -1,0 +1,40 @@
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.4); 
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 60%; 
+    max-width: 500px; 
+    box-sizing: border-box; 
+    position: relative;
+    top: 50%;
+    left: 20%;
+    transform: translate(-50%, -50%); overflow-x:hidden;
+}
+#caption{
+    font-size:20px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+}
+
+@media (max-width: 600px) {
+
+    .modal-content {
+        width: 80%;
+        left:40%;
+        transform:translate(-50%,-50%);
+       
+    }
+}
