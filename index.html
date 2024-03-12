@@ -546,42 +546,40 @@
 
         //modal
         document.addEventListener('DOMContentLoaded', function () {
+    var modal = document.getElementById('myModal');
+    var modalImg = document.getElementById('imgm');
+    var caption = document.getElementById('caption');
+    var span = document.getElementsByClassName('modalclose')[0];
 
-            var modal = document.getElementById('myModal');
-            var modalImg = document.getElementById('imgm');
-            var caption = document.getElementById('caption');
-            var span = document.getElementsByClassName('modalclose')[0];
+    document.querySelector('.product-display-container').addEventListener('click', function (event) {
+        if (event.target.classList.contains('CartButton')) {
+            // If the clicked element has the class 'CartButton', stop the function.
+            return;
+        }
 
+        var product = event.target.closest('.product');
 
-            document.querySelector('.product-display-container').addEventListener('click', function (event) {
-                if (event.target.classList.contains('CartButton')) {
-        
-        return;
+        if (product) {
+            var imgSrc = product.querySelector("img").src;
+            var productName = product.querySelector("h4").textContent;
+            var price = product.querySelector("h3 span").textContent;
+
+            modal.style.display = "block";
+            modalImg.src = imgSrc;
+            caption.innerHTML = `${productName} <br><br>Price:  $${price}`; // Fixed typo from 'aption' to 'caption'
+        }
+    });
+
+    span.onclick = function () {
+        modal.style.display = "none";
+    };
+
+    window.onclick = function (e) {
+        if (e.target == modal) {
+            modal.style.display = "none";
+        }
     }
-
-                var product = event.target.closest('.product');
-
-                if (product) {
-                    var imgSrc = product.querySelector("img").src;
-                    var productName = product.querySelector("h4").textContent;
-                    var price = product.querySelector("h3 span").textContent;
-
-                    modal.style.display = "block";
-                    modalImg.src = imgSrc;
-                    caption.innerHTML = `${productName} <br><br><br>Price: $${price}`;
-                }
-            });
-
-            span.onclick = function () {
-                modal.style.display = "none";
-            };
-            window.onclick = function (e) {
-                if (e.target == modal) {
-                    modal.style.display = "none";
-                }
-            }
-
-        });
+});
 
 
 

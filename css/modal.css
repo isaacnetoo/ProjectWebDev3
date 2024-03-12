@@ -9,6 +9,14 @@
     overflow: auto; 
     background-color: rgba(0,0,0,0.4); 
 }
+.modalbody{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap:1rem;
+    text-align: center;
+
+}
 
 .modal-content {
     background-color: #fefefe;
