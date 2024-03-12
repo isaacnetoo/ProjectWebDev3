@@ -1,0 +1,20 @@
+.modal{
+    display:none;
+    z-index:1;
+    position:fixed;
+    left:25%;
+    top:25%;
+    width: 50%;
+    height:auto;
+}
+.modal-content{
+    width:100%;
+    align-items:center;
+
+}
+
+.close{
+    position:absolute;
+    color:black;
+    cursor:pointer
+}
