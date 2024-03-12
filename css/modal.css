@@ -4,17 +4,36 @@
     position:fixed;
     left:25%;
     top:25%;
-    width: 50%;
-    height:auto;
+    width: 60%;
+    height:20%;
+   
 }
 .modal-content{
     width:100%;
     align-items:center;
-
+    background-color:#17A3AD;
+padding:5%;
+}
+.modalbody{
+    display:flex;
+}
+.modaImg{
+    padding:10%;
+}
+.close {
+    position: absolute;
+    color: #333; 
+    cursor: pointer;
+    top: 5px; 
+    right: 5px; 
+    font-size: 20px; 
+    padding: 10px; 
 }
 
-.close{
-    position:absolute;
-    color:black;
-    cursor:pointer
-}
+
+    #caption {
+        margin: 30px 20px; 
+        font-size: 25px;
+        font-family: 'Roboto', sans-serif;
+        font-weight: bold; 
+    }

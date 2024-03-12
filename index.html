@@ -188,9 +188,11 @@
 
     </section>
     <div id="myModal" class="modal">
+        <div class="modal-content">
             <span class="close">&times;</span>
+            <div class="modalbody">
                 <img class="modalImg" id="imgm">
-           <div id="caption" ></div>
+           <div id="caption" ></div></div></div>
         </div>
     </div>
 
@@ -558,13 +560,14 @@
 
             modal.style.display = "block";
             modalImg.src = imgSrc;
-            caption.innerHTML = `${productName} <br>Price: $${price}`;
+            caption.innerHTML = `${productName} <br><br><br>Price: $${price}`;
         }
     });
 
     span.onclick = function() {
         modal.style.display = "none";
     };
+
 });
 
      
