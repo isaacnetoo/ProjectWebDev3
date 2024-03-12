@@ -1,4 +1,5 @@
-0<!DOCTYPE html>
+0
+<!DOCTYPE html>
 
 <html>
 
@@ -176,6 +177,7 @@
         <div class="product-display-container">
 
             <div class="product" id="ProductId">
+
                 <img src="./product_gallery/v-planet-mini-bites-kibbles.jpg" alt="dogFood">
                 <h4>V-planet Mini Bites Vegan Adult Dog Food by V-Dog</h4>
                 <h3>Price:<span>38</span></h3>
@@ -189,11 +191,13 @@
     </section>
     <div id="myModal" class="modal">
         <div class="modal-content">
-            <span class="close">&times;</span>
+            <span class="modalclose">&times;</span>
             <div class="modalbody">
                 <img class="modalImg" id="imgm">
-           <div id="caption" ></div></div></div>
+                <div id="caption"></div>
+            </div>
         </div>
+    </div>
     </div>
 
 
@@ -541,41 +545,45 @@
         });
 
         //modal
-        document.addEventListener('DOMContentLoaded', function() {
-  
-    var modal = document.getElementById('myModal');
-    var modalImg = document.getElementById('imgm');
-    var caption = document.getElementById('caption');
-    var span = document.getElementsByClassName('close')[0]; 
+        document.addEventListener('DOMContentLoaded', function () {
 
-   
-    document.querySelector('.product-display-container').addEventListener('click', function(event) {
-     
-        var product = event.target.closest('.product');
-    
-        if (product) {
-            var imgSrc = product.querySelector("img").src;
-            var productName = product.querySelector("h4").textContent;
-            var price = product.querySelector("h3 span").textContent;
+            var modal = document.getElementById('myModal');
+            var modalImg = document.getElementById('imgm');
+            var caption = document.getElementById('caption');
+            var span = document.getElementsByClassName('modalclose')[0];
 
-            modal.style.display = "block";
-            modalImg.src = imgSrc;
-            caption.innerHTML = `${productName} <br><br><br>Price: $${price}`;
-        }
-    });
 
-    span.onclick = function() {
-        modal.style.display = "none";
-    };
-    window.onclick=function(e){
-        if(e.target==modal){
-            modal.style.display="none";
-        }
+            document.querySelector('.product-display-container').addEventListener('click', function (event) {
+                if (event.target.classList.contains('CartButton')) {
+        
+        return;
     }
 
-});
+                var product = event.target.closest('.product');
 
-     
+                if (product) {
+                    var imgSrc = product.querySelector("img").src;
+                    var productName = product.querySelector("h4").textContent;
+                    var price = product.querySelector("h3 span").textContent;
+
+                    modal.style.display = "block";
+                    modalImg.src = imgSrc;
+                    caption.innerHTML = `${productName} <br><br><br>Price: $${price}`;
+                }
+            });
+
+            span.onclick = function () {
+                modal.style.display = "none";
+            };
+            window.onclick = function (e) {
+                if (e.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+
+        });
+
+
 
 
     </script>
