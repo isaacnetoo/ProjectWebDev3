@@ -21,7 +21,7 @@
     position: relative;
     top: 50%;
     left: 20%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); overflow-x:hidden;
 }
 #caption{
     font-size:20px;
@@ -33,6 +33,8 @@
 
     .modal-content {
         width: 80%;
-        overflow-x:hidden;
+        left:40%;
+        transform:translate(-50%,-50%);
+       
     }
 }
