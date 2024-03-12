@@ -14,6 +14,12 @@ body{
     overflow-x: scroll;
 } 
 
+.gallery-container{
+   
+    max-width: 100%;
+    min-width:280px;
+}
+
 .gallery div{
     width: 100%;
     display: grid;
@@ -21,12 +27,14 @@ body{
     grid-gap: 20px;
     padding: 10px;
     flex: none;
+
 }
 
 .gallery div img{
     width: 100%;
     filter: grayscale(100%);
     transition: transform 0.5s;
+    min-width:60px;
 }
 
 .gallery::-webkit-scrollbar{
@@ -34,6 +42,7 @@ body{
 }
 
 .gallery-wrap{
+    width:100%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -41,13 +50,22 @@ body{
 }
 
 #BackBtn, #NextBtn {
-    width: 50px;
+    width: 40px;
     cursor: pointer;
     margin: 40px;
+    max-width: 100%;
 }
 
 .gallery div img:hover {
     filter: grayscale(0);
     cursor: pointer;
     transform: scale(1.1);
+}
+
+
+@media only screen and (max-width: 768px){
+    #BackBtn, #NextBtn{
+       margin:20px;
+       width:25px;
+    }
 }
