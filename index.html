@@ -91,7 +91,8 @@
 
                     <a href="https://www.canadianpetconnection.ca/pet-news/">New & Resources</a>
 
-                    <a href="https://www.canadianpetconnection.ca/sale/">Sales</a>
+                    <img src="./img/moon.png" alt="Moon" class="icon" id="moon-icon">
+                    <img src="./img/sun.png" alt="Sun" class="icon" id="sun-icon" style="display: none;">
 
                 </div>
             </div>
@@ -576,7 +577,43 @@
 });
 
      
+document.addEventListener('DOMContentLoaded', function() {
+    const moonIcon = document.getElementById('moon-icon');
+    const sunIcon = document.getElementById('sun-icon');
+    const header = document.querySelector('header');
+    const body = document.querySelector('body');
+    const footer = document.querySelector('footer');
+    const productDisplayContainer = document.querySelector('.product-display-container');
 
+    const backgroundColor = {
+        day: '#FFFFFF',
+        night: '#000000'
+    };
+
+    moonIcon.addEventListener('click', function() {
+    moonIcon.style.display = 'none';
+    sunIcon.style.display = 'block';
+    header.style.backgroundColor = '#000000'; // Change header background color to black
+    applyBodyStyles(backgroundColor.night);
+    footer.style.color = '#FFFFFF';
+    });
+
+    sunIcon.addEventListener('click', function() {
+        sunIcon.style.display = 'none';
+        moonIcon.style.display = 'block';
+        header.style.backgroundColor = '#FFFFFF';
+        applyBodyStyles(backgroundColor.day);
+        footer.style.color = '#000000'; 
+    });
+
+    function applyBodyStyles(color) {
+        body.style.backgroundColor = color;
+        // Check if product display container exists before applying styles
+        if (productDisplayContainer) {
+            productDisplayContainer.style.backgroundColor = backgroundColor.day;
+        }
+    }
+});
 
     </script>
     <!-- external cart  js  -->
