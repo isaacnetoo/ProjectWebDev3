@@ -3,7 +3,8 @@ footer{
     height:240px;
     display:flex;
     justify-content: center;
-
+    background-color: var(--background-color);
+    color: var(--text-color);
 }
 
 .footer-container{

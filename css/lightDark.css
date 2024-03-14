@@ -9,6 +9,7 @@
     --first-row: #CB2227;
     --second-row: #54595F;
     --third-row: rgb(32, 66, 203);
+    --products-background: #21cdda;
 
      /* Cart Buttons */
      --closecart-button: #bac7cc;
@@ -29,6 +30,8 @@
     /* Dark grey for second row */
     --third-row: #afdf1e;
     /* Black for third row */
+    --products-background: #222;   
+
 
     /* Cart Buttons */
     --closecart-button: yellow;

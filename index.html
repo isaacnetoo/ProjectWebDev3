@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="./css/imageslide.css">
     <link rel="stylesheet" href="./css/modal.css">
     <link rel="stylesheet" href="./css/lightDark.css">
+    <link rel="stylesheet" href="./css/sanitize.css">
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;500;700&display=swap"
         rel="stylesheet">
@@ -269,6 +270,14 @@
         <input class="submit" type="submit" value="Send Us An Email">
     </section>
 
+    <script>
+    function validateForm() {
+        let x = document.forms["myForm"]["fname"].value;
+        if (x == "") {
+          alert("Name must be filled out");
+          return false;
+        }
+        </script>
 
     <footer>
         <div class="footer-container">

@@ -30,7 +30,7 @@
 }
 
 .product{
-    background-color: var(--text-color);
+    background-color: var(--products-background);
     display:flex;
     justify-content: center;
     flex-direction: column;
@@ -62,7 +62,7 @@
 }
 
 .product>h4{
-    color: var(--background-color);
+    color: var(--text-color);
     width:248px;
     height: 5.5rem;
     max-width: 100%;
@@ -73,7 +73,7 @@
 }
 
 .product>h3{
-    color: var(--background-color);
+    color: var(--text-color);
     width:248px;
     text-align: center;
     max-width: 100%;
