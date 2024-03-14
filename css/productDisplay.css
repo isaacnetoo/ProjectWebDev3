@@ -15,7 +15,7 @@
     max-width:100%;
 } */
 .product-display-container{
-    background-color: var(--background-color);
+    /* background-color: var(--background-color); */
     padding:1rem 2rem;
     width:1120px;
     height:auto;
