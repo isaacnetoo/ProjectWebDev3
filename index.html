@@ -73,11 +73,12 @@
                     <a href="./index.html">Home</a>
                     <a href="">Login</a>
                     <a href="">MyPetCart</a>
-                    <img src="./img/moon.png" alt="Moon" class="icon" id="day-night">
                     <div class="cart-widget">
                         <img src="./img/icons8-add-shopping-cart-50.png" alt="Cart Icon">
                         <span class="cart-count">0</span> <!-- Assuming there are 3 items in the cart -->
                     </div>
+                    <img src="./img/moon.png" alt="Moon" class="icon" id="day-night">
+                   
                 </div>
 
 
@@ -582,14 +583,14 @@
         toggleButton.onclick = function(){
             document.body.classList.toggle('night-mode')
             if (document.body.classList.contains('night-mode')){
-                toggleButton.src="./img/moon.png";
+                toggleButton.src="./img/sun.png";
                 toggleButton.alt="Switch to day mode";
             }else{
-                toggleButton.src="./img/sun.png";
+                toggleButton.src="./img/moon.png";
                 toggleButton.alt="switch to night mode";
             }
         }
-        
+
     </script>
     <!-- external cart  js  -->
     <script type="module" src="./js/cart.js"></script>
