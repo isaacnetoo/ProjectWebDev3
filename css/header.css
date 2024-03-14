@@ -20,6 +20,11 @@ header{
  
 }
 
+.icon {
+    width: 30px;
+    cursor: pointer;
+}
+
 .header-container{
     display:flex;
     justify-content: space-around;
