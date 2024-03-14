@@ -250,34 +250,20 @@
 
     </div>
 
-    <!-- CONTACT US -->
-    <section class="contactUsContainer">
-        <form action="" method="dialog"></form>
-        <h1>Contact Us</h1>
-        <p>Feel free to contact us</p>
-
-        <input type="text" class="writeHere" name="name" placeholder="Name" required><br>
-
-        <input type="email" class="writeHere" name="email" placeholder="Email" required><br>
-
-        <textarea class="writeHere" name="message" placeholder="Text here" cols="30"></textarea><br>
-
-        <select name="subject" id="subject">
-            <option value="In-store">Avaible in Store</option>
-            <option value="Order">Order</option>
-            <option value="Hiring Oportunites">Work With Us</option>
-        </select><br>
-        <input class="submit" type="submit" value="Send Us An Email">
-    </section>
-
-    <script>
-    function validateForm() {
-        let x = document.forms["myForm"]["fname"].value;
-        if (x == "") {
-          alert("Name must be filled out");
-          return false;
-        }
-        </script>
+    <!-- CONTACT US FORM -->
+    <form id="myForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <br>
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" required></textarea>
+        <br>
+        <button type="submit">Submit</button>
+      </form>
+      <script src="./js/sanitize.js"></script>
 
     <footer>
         <div class="footer-container">
