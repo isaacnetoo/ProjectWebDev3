@@ -1,4 +1,5 @@
 .customize-filter{
+    background-color: var(--header-catergory);
     width:100%;
     padding:1rem 0;
     display:flex;
@@ -19,7 +20,7 @@
 
 .text-result-container>h3 {
     font-family: 'Roboto', sans-serif;
-    
+    color: var(--text-color);
 }
 
 /* Custom Dropdown Styles */

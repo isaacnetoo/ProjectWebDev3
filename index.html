@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="./css/cart.css">
     <link rel="stylesheet" href="./css/imageslide.css">
     <link rel="stylesheet" href="./css/modal.css">
+    <link rel="stylesheet" href="./css/lightDark.css">
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;500;700&display=swap"
         rel="stylesheet">
@@ -91,7 +92,17 @@
 
                     <a href="https://www.canadianpetconnection.ca/pet-news/">New & Resources</a>
 
-                    <a href="https://www.canadianpetconnection.ca/sale/">Sales</a>
+                    <!-- Light and Dark Mode -->
+                    <div class="theme-switch-wrapper">
+                        <label class="theme-switch" for="checkbox">
+                            <input type="checkbox" id="checkbox">
+                            <div class="slider round"></div>
+                        </label> 
+                        <em>Switch</em>
+                    </div>
+                    <script src="./js/lighDark.js"></script>
+
+                    <!-- <a href="https://www.canadianpetconnection.ca/sale/">Sales</a> -->
 
                 </div>
             </div>
@@ -238,7 +249,25 @@
 
     </div>
 
+    <!-- CONTACT US -->
+    <section class="contactUsContainer">
+        <form action="" method="dialog"></form>
+        <h1>Contact Us</h1>
+        <p>Feel free to contact us</p>
 
+        <input type="text" class="writeHere" name="name" placeholder="Name" required><br>
+
+        <input type="email" class="writeHere" name="email" placeholder="Email" required><br>
+
+        <textarea class="writeHere" name="message" placeholder="Text here" cols="30"></textarea><br>
+
+        <select name="subject" id="subject">
+            <option value="In-store">Avaible in Store</option>
+            <option value="Order">Order</option>
+            <option value="Hiring Oportunites">Work With Us</option>
+        </select><br>
+        <input class="submit" type="submit" value="Send Us An Email">
+    </section>
 
 
     <footer>

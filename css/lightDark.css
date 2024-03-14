@@ -1,0 +1,98 @@
+/* * {
+    border: red 2px solid;
+} */
+
+:root {
+    --background-color: white;
+    --header-catergory: #21cdda;
+    --text-color: Black;
+    --first-row: #CB2227;
+    --second-row: #54595F;
+    --third-row: rgb(32, 66, 203);
+
+     /* Cart Buttons */
+     --closecart-button: #bac7cc;
+     --resetcart-button: #9274f3;
+     --checkout-button: #54595F;
+}
+
+[data-theme="dark"] {
+    --background-color: Black;
+/* Black for the White Background */
+    --header-catergory: #222;
+    /* Dark grey for header category */
+    --text-color: #ccc;
+    /* Light grey for text */
+    --first-row: #f6f4f4;
+    /* Mid grey for first row */
+    --second-row: #c8c3c3;
+    /* Dark grey for second row */
+    --third-row: #afdf1e;
+    /* Black for third row */
+
+    /* Cart Buttons */
+    --closecart-button: yellow;
+    --resetcart-button: #555;
+    --checkout-button: #333;
+}
+
+.theme-switch-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+em {
+    margin-top: 0px;
+    padding-right: 0x;
+    font-size: 1rem;
+}
+
+.theme-switch {
+    display: inline-block;
+    height: 26px;
+    position: relative;
+    width: 50px;
+}
+
+.theme-switch input {
+    display: none;
+}
+
+.slider {
+    background-color: var(--header-catergory);
+    bottom: 0;
+    cursor: pointer;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: .4s;
+}
+
+.slider:before {
+    background-color: var(--text-color);
+    bottom: 1px;
+    content: "";
+    height: 24px;
+    left: 4px;
+    position: absolute;
+    transition: .4s;
+    width: 26px;
+}
+
+input:checked + .slider {
+    background-color: var(--header-catergory);
+  }
+  
+  input:checked + .slider:before {
+    transform: translateX(26px);
+  }
+  
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
+  

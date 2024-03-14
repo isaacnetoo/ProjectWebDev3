@@ -2,8 +2,8 @@
 
 .cartTab{
     width:400px;
-    background-color:#353432;
-    color:bisque;
+    background-color: var(--background-color);
+    color: var(--text-color);
     position:fixed;
     /* top:0;
     right:0;
@@ -41,21 +41,20 @@ body.showCart .cartTab{
 }
 
 .cartTab .btn button{
-    background-color:chocolate;
+    background-color: red;
     border:none;
     font-family: 'Roboto', sans-serif;
-    
     font-weight:500;
     cursor:pointer;
 }
 
 .cartTab .btn .close{
    
-    background-color: yellowgreen;
+    background-color: var(--closecart-button);
 }
 
 .cartTab .btn .reset{
-    background-color: #eee;
+    background-color: var(--resetcart-button);
 }
 
 .cartTab .listCart .item img{
@@ -65,7 +64,7 @@ body.showCart .cartTab{
 
 /* img name price in a row */
 .cartTab .listCart .item{
-    color:whitesmoke;
+    color: var();
     display:grid;
     grid-template-columns: 80px 120px 50px 1fr;
     gap:8px;

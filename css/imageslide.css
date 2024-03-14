@@ -5,7 +5,7 @@
 }
 
 body{
-    background:white;
+    background: white;
 }
 
 .gallery {
@@ -15,7 +15,7 @@ body{
 } 
 
 .gallery-container{
-   
+
     max-width: 100%;
     min-width:280px;
 }

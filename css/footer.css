@@ -57,8 +57,8 @@ footer{
     z-index: 99;
     border: none;
     outline: none;
-    background-color: #555;
-    color: white;
+    background-color: var(--text-color);
+    color: var(--background-color);
     cursor: pointer;
     padding: 15px;
     border-radius: 10px;
