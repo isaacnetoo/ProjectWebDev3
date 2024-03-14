@@ -21,7 +21,8 @@ header{
 }
 
 .icon {
-    width: 30px;
+    width: 25px;
+    height:25px;
     cursor: pointer;
 }
 
